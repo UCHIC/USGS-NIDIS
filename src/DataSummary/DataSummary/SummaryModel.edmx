@@ -1,0 +1,1358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SummaryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SummaryModelStoreContainer">
+          <EntitySet Name="AggregateSeries" EntityType="SummaryModel.Store.AggregateSeries" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DataValues" EntityType="SummaryModel.Store.DataValues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IndexValuexRef" EntityType="SummaryModel.Store.IndexValuexRef" store:Type="Tables" store:Schema="dbo" store:Name="IndexValuexRef">
+            <DefiningQuery>SELECT 
+      [IndexValuexRef].[SiteType] AS [SiteType], 
+      [IndexValuexRef].[DataTimePeriod] AS [DataTimePeriod], 
+      [IndexValuexRef].[L3VariableID] AS [L3VariableID], 
+      [IndexValuexRef].[L3VariableCode] AS [L3VariableCode], 
+      [IndexValuexRef].[L3MethodID] AS [L3MethodID], 
+      [IndexValuexRef].[VariableID] AS [VariableID], 
+      [IndexValuexRef].[VariableCode] AS [VariableCode], 
+      [IndexValuexRef].[MethodID] AS [MethodID], 
+      [IndexValuexRef].[SourceID] AS [SourceID], 
+      [IndexValuexRef].[QualityControlLevelID] AS [QualityControlLevelID], 
+      [IndexValuexRef].[L3DBDataSource] AS [L3DBDataSource], 
+      [IndexValuexRef].[L3DBInitialCatalog] AS [L3DBInitialCatalog], 
+      [IndexValuexRef].[L3DBUsername] AS [L3DBUsername], 
+      [IndexValuexRef].[L3DBPassword] AS [L3DBPassword], 
+      [IndexValuexRef].[DBDataSource] AS [DBDataSource], 
+      [IndexValuexRef].[DBInitialCatalog] AS [DBInitialCatalog], 
+      [IndexValuexRef].[DBUsername] AS [DBUsername], 
+      [IndexValuexRef].[DBPassword] AS [DBPassword]
+      FROM [dbo].[IndexValuexRef] AS [IndexValuexRef]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="IVtoTADxRef" EntityType="SummaryModel.Store.IVtoTADxRef" store:Type="Tables" store:Schema="dbo" store:Name="IVtoTADxRef">
+            <DefiningQuery>SELECT 
+      [IVtoTADxRef].[SiteType] AS [SiteType], 
+      [IVtoTADxRef].[SiteIDTAD] AS [SiteIDTAD], 
+      [IVtoTADxRef].[SiteCodeTAD] AS [SiteCodeTAD], 
+      [IVtoTADxRef].[VariableIDTAD] AS [VariableIDTAD], 
+      [IVtoTADxRef].[VariableCodeTAD] AS [VariableCodeTAD], 
+      [IVtoTADxRef].[MethodIDTAD] AS [MethodIDTAD], 
+      [IVtoTADxRef].[QualityControlLevelIDTAD] AS [QualityControlLevelIDTAD], 
+      [IVtoTADxRef].[SourceIDTAD] AS [SourceIDTAD], 
+      [IVtoTADxRef].[SiteIDIV] AS [SiteIDIV], 
+      [IVtoTADxRef].[SiteCodeIV] AS [SiteCodeIV], 
+      [IVtoTADxRef].[VariableIDIV] AS [VariableIDIV], 
+      [IVtoTADxRef].[VariableCodeIV] AS [VariableCodeIV], 
+      [IVtoTADxRef].[MethodIDIV] AS [MethodIDIV], 
+      [IVtoTADxRef].[QualityControlLevelIDIV] AS [QualityControlLevelIDIV], 
+      [IVtoTADxRef].[SourceIDIV] AS [SourceIDIV], 
+      [IVtoTADxRef].[FormulaNo] AS [FormulaNo], 
+      [IVtoTADxRef].[Weight] AS [Weight], 
+      [IVtoTADxRef].[TADDBDataSource] AS [TADDBDataSource], 
+      [IVtoTADxRef].[TADDBInitialCatalog] AS [TADDBInitialCatalog], 
+      [IVtoTADxRef].[TADDBUsername] AS [TADDBUsername], 
+      [IVtoTADxRef].[TADDBPassword] AS [TADDBPassword], 
+      [IVtoTADxRef].[IVDBDataSource] AS [IVDBDataSource], 
+      [IVtoTADxRef].[IVDBInitialCatalog] AS [IVDBInitialCatalog], 
+      [IVtoTADxRef].[IVDBUsername] AS [IVDBUsername], 
+      [IVtoTADxRef].[IVDBPassword] AS [IVDBPassword]
+      FROM [dbo].[IVtoTADxRef] AS [IVtoTADxRef]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="L1HarvestList" EntityType="SummaryModel.Store.L1HarvestList" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Methods" EntityType="SummaryModel.Store.Methods" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Qualifiers" EntityType="SummaryModel.Store.Qualifiers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QualityControlLevels" EntityType="SummaryModel.Store.QualityControlLevels" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SeriesCatalog" EntityType="SummaryModel.Store.SeriesCatalog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sites" EntityType="SummaryModel.Store.Sites" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sources" EntityType="SummaryModel.Store.Sources" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Units" EntityType="SummaryModel.Store.Units" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Variables" EntityType="SummaryModel.Store.Variables" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WatershedSeries" EntityType="SummaryModel.Store.WatershedSeries" store:Type="Tables" store:Schema="dbo" store:Name="WatershedSeries">
+            <DefiningQuery>SELECT 
+      [WatershedSeries].[SiteType] AS [SiteType], 
+      [WatershedSeries].[DataTimePeriod] AS [DataTimePeriod], 
+      [WatershedSeries].[L3VariableID] AS [L3VariableID], 
+      [WatershedSeries].[L3VariableCode] AS [L3VariableCode], 
+      [WatershedSeries].[L3MethodID] AS [L3MethodID], 
+      [WatershedSeries].[VariableID] AS [VariableID], 
+      [WatershedSeries].[VariableCode] AS [VariableCode], 
+      [WatershedSeries].[MethodID] AS [MethodID], 
+      [WatershedSeries].[SourceID] AS [SourceID], 
+      [WatershedSeries].[QualityControlLevelID] AS [QualityControlLevelID], 
+      [WatershedSeries].[L3DBDataSource] AS [L3DBDataSource], 
+      [WatershedSeries].[L3DBInitialCatalog] AS [L3DBInitialCatalog], 
+      [WatershedSeries].[L3DBUsername] AS [L3DBUsername], 
+      [WatershedSeries].[L3DBPassword] AS [L3DBPassword], 
+      [WatershedSeries].[DBDataSource] AS [DBDataSource], 
+      [WatershedSeries].[DBInitialCatalog] AS [DBInitialCatalog], 
+      [WatershedSeries].[DBUsername] AS [DBUsername], 
+      [WatershedSeries].[DBPassword] AS [DBPassword]
+      FROM [dbo].[WatershedSeries] AS [WatershedSeries]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DataValues_Methods" Association="SummaryModel.Store.FK_DataValues_Methods">
+            <End Role="Methods" EntitySet="Methods" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Qualifiers" Association="SummaryModel.Store.FK_DataValues_Qualifiers">
+            <End Role="Qualifiers" EntitySet="Qualifiers" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_QualityControlLevels" Association="SummaryModel.Store.FK_DataValues_QualityControlLevels">
+            <End Role="QualityControlLevels" EntitySet="QualityControlLevels" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sites" Association="SummaryModel.Store.FK_DataValues_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sources" Association="SummaryModel.Store.FK_DataValues_Sources">
+            <End Role="Sources" EntitySet="Sources" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Variables" Association="SummaryModel.Store.FK_DataValues_Variables">
+            <End Role="Variables" EntitySet="Variables" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variables_Units" Association="SummaryModel.Store.FK_Variables_Units">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variables_Units1" Association="SummaryModel.Store.FK_Variables_Units1">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AggregateSeries">
+          <Key>
+            <PropertyRef Name="AggregateID" />
+          </Key>
+          <Property Name="AggregateID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="OriginalVariableID" Type="int" Nullable="false" />
+          <Property Name="AggregateMethod" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="VariableID" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" />
+          <Property Name="MethodID" Type="int" Nullable="false" />
+          <Property Name="DataTimePeriod" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="L1DBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="L1DBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="L1DBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="L1DBPassword" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBPassword" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DataValues">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DataValue" Type="float" Nullable="false" />
+          <Property Name="ValueAccuracy" Type="float" />
+          <Property Name="LocalDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UTCOffset" Type="float" Nullable="false" />
+          <Property Name="DateTimeUTC" Type="datetime" Nullable="false" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="VariableID" Type="int" Nullable="false" />
+          <Property Name="OffsetValue" Type="float" />
+          <Property Name="OffsetTypeID" Type="int" />
+          <Property Name="CensorCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="QualifierID" Type="int" />
+          <Property Name="MethodID" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="SampleID" Type="int" />
+          <Property Name="DerivedFromID" Type="int" />
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Summary.dbo.IndexValuexRef' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="IndexValuexRef">
+          <Key>
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="DataTimePeriod" />
+            <PropertyRef Name="L3VariableID" />
+            <PropertyRef Name="L3MethodID" />
+            <PropertyRef Name="VariableID" />
+            <PropertyRef Name="MethodID" />
+            <PropertyRef Name="SourceID" />
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Name="SiteType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DataTimePeriod" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="L3VariableID" Type="int" Nullable="false" />
+          <Property Name="L3VariableCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="L3MethodID" Type="int" Nullable="false" />
+          <Property Name="VariableID" Type="int" Nullable="false" />
+          <Property Name="VariableCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="MethodID" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" />
+          <Property Name="L3DBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="L3DBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="L3DBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="L3DBPassword" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBPassword" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Summary.dbo.IVtoTADxRef' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="IVtoTADxRef">
+          <Key>
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="SiteIDTAD" />
+            <PropertyRef Name="VariableIDTAD" />
+            <PropertyRef Name="MethodIDTAD" />
+            <PropertyRef Name="QualityControlLevelIDTAD" />
+            <PropertyRef Name="SourceIDTAD" />
+            <PropertyRef Name="SiteIDIV" />
+            <PropertyRef Name="SiteCodeIV" />
+            <PropertyRef Name="VariableIDIV" />
+            <PropertyRef Name="VariableCodeIV" />
+            <PropertyRef Name="MethodIDIV" />
+            <PropertyRef Name="QualityControlLevelIDIV" />
+            <PropertyRef Name="SourceIDIV" />
+            <PropertyRef Name="Weight" />
+          </Key>
+          <Property Name="SiteType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="SiteIDTAD" Type="int" Nullable="false" />
+          <Property Name="SiteCodeTAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="VariableIDTAD" Type="int" Nullable="false" />
+          <Property Name="VariableCodeTAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="MethodIDTAD" Type="int" Nullable="false" />
+          <Property Name="QualityControlLevelIDTAD" Type="int" Nullable="false" />
+          <Property Name="SourceIDTAD" Type="int" Nullable="false" />
+          <Property Name="SiteIDIV" Type="int" Nullable="false" />
+          <Property Name="SiteCodeIV" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="VariableIDIV" Type="int" Nullable="false" />
+          <Property Name="VariableCodeIV" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MethodIDIV" Type="int" Nullable="false" />
+          <Property Name="QualityControlLevelIDIV" Type="int" Nullable="false" />
+          <Property Name="SourceIDIV" Type="int" Nullable="false" />
+          <Property Name="FormulaNo" Type="int" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="TADDBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="TADDBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="TADDBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="TADDBPassword" Type="nvarchar" MaxLength="255" />
+          <Property Name="IVDBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="IVDBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="IVDBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="IVDBPassword" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="L1HarvestList">
+          <Key>
+            <PropertyRef Name="HarvestID" />
+          </Key>
+          <Property Name="HarvestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="50" />
+          <Property Name="VariableCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="WebServiceURL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="VariableID" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" />
+          <Property Name="MethodID" Type="int" Nullable="false" />
+          <Property Name="SiteType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBPassword" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Methods">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MethodDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MethodLink" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Qualifiers">
+          <Key>
+            <PropertyRef Name="QualifierID" />
+          </Key>
+          <Property Name="QualifierID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QualifierCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="QualifierDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QualityControlLevels">
+          <Key>
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QualityControlLevelCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Definition" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Explanation" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeriesCatalog">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="int" />
+          <Property Name="SiteCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="255" />
+          <Property Name="VariableID" Type="int" />
+          <Property Name="VariableCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="VariableName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Speciation" Type="nvarchar" MaxLength="255" />
+          <Property Name="VariableUnitsID" Type="int" />
+          <Property Name="VariableUnitsName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SampleMedium" Type="nvarchar" MaxLength="255" />
+          <Property Name="ValueType" Type="nvarchar" MaxLength="255" />
+          <Property Name="TimeSupport" Type="float" />
+          <Property Name="TimeUnitsID" Type="int" />
+          <Property Name="TimeUnitsName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataType" Type="nvarchar" MaxLength="255" />
+          <Property Name="GeneralCategory" Type="nvarchar" MaxLength="255" />
+          <Property Name="MethodID" Type="int" />
+          <Property Name="MethodDescription" Type="nvarchar(max)" />
+          <Property Name="SourceID" Type="int" />
+          <Property Name="Organization" Type="nvarchar" MaxLength="255" />
+          <Property Name="SourceDescription" Type="nvarchar(max)" />
+          <Property Name="Citation" Type="nvarchar(max)" />
+          <Property Name="QualityControlLevelID" Type="int" />
+          <Property Name="QualityControlLevelCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BeginDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="BeginDateTimeUTC" Type="datetime" />
+          <Property Name="EndDateTimeUTC" Type="datetime" />
+          <Property Name="ValueCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="LatLongDatumID" Type="int" Nullable="false" />
+          <Property Name="Elevation_m" Type="float" />
+          <Property Name="VerticalDatum" Type="nvarchar" MaxLength="255" />
+          <Property Name="LocalX" Type="float" />
+          <Property Name="LocalY" Type="float" />
+          <Property Name="LocalProjectionID" Type="int" />
+          <Property Name="PosAccuracy_m" Type="float" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="County" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="SiteType" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Organization" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="SourceDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SourceLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="ContactName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ZipCode" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Citation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MetadataID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="UnitsID" />
+          </Key>
+          <Property Name="UnitsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UnitsName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UnitsType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UnitsAbbreviation" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Variables">
+          <Key>
+            <PropertyRef Name="VariableID" />
+          </Key>
+          <Property Name="VariableID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VariableCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="VariableName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Speciation" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="VariableUnitsID" Type="int" Nullable="false" />
+          <Property Name="SampleMedium" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ValueType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="IsRegular" Type="bit" Nullable="false" />
+          <Property Name="TimeSupport" Type="float" Nullable="false" />
+          <Property Name="TimeUnitsID" Type="int" Nullable="false" />
+          <Property Name="DataType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="GeneralCategory" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="NoDataValue" Type="float" Nullable="false" />
+          <Property Name="MonthlyDVMin" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Summary.dbo.WatershedSeries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="WatershedSeries">
+          <Key>
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="DataTimePeriod" />
+            <PropertyRef Name="L3VariableCode" />
+            <PropertyRef Name="L3MethodID" />
+            <PropertyRef Name="VariableCode" />
+            <PropertyRef Name="MethodID" />
+            <PropertyRef Name="SourceID" />
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Name="SiteType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DataTimePeriod" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="L3VariableID" Type="int" />
+          <Property Name="L3VariableCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="L3MethodID" Type="int" Nullable="false" />
+          <Property Name="VariableID" Type="int" />
+          <Property Name="VariableCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MethodID" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" />
+          <Property Name="L3DBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="L3DBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="L3DBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="L3DBPassword" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBDataSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBInitialCatalog" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBUsername" Type="nvarchar" MaxLength="255" />
+          <Property Name="DBPassword" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_DataValues_Methods">
+          <End Role="Methods" Type="SummaryModel.Store.Methods" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Methods">
+              <PropertyRef Name="MethodID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="MethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_Qualifiers">
+          <End Role="Qualifiers" Type="SummaryModel.Store.Qualifiers" Multiplicity="0..1" />
+          <End Role="DataValues" Type="SummaryModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualifiers">
+              <PropertyRef Name="QualifierID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="QualifierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_QualityControlLevels">
+          <End Role="QualityControlLevels" Type="SummaryModel.Store.QualityControlLevels" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualityControlLevels">
+              <PropertyRef Name="QualityControlLevelID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="QualityControlLevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_Sites">
+          <End Role="Sites" Type="SummaryModel.Store.Sites" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_Sources">
+          <End Role="Sources" Type="SummaryModel.Store.Sources" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sources">
+              <PropertyRef Name="SourceID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="SourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_Variables">
+          <End Role="Variables" Type="SummaryModel.Store.Variables" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variables">
+              <PropertyRef Name="VariableID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="VariableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Variables_Units">
+          <End Role="Units" Type="SummaryModel.Store.Units" Multiplicity="1" />
+          <End Role="Variables" Type="SummaryModel.Store.Variables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="UnitsID" />
+            </Principal>
+            <Dependent Role="Variables">
+              <PropertyRef Name="VariableUnitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Variables_Units1">
+          <End Role="Units" Type="SummaryModel.Store.Units" Multiplicity="1" />
+          <End Role="Variables" Type="SummaryModel.Store.Variables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="UnitsID" />
+            </Principal>
+            <Dependent Role="Variables">
+              <PropertyRef Name="TimeUnitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BiMonthlyAggregator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="origVariableID" Type="int" Mode="In" />
+          <Parameter Name="siteType" Type="nvarchar" Mode="In" />
+          <Parameter Name="tooConnectionstring" Type="varchar" Mode="In" />
+          <Parameter Name="tooDBName" Type="varchar" Mode="In" />
+          <Parameter Name="fromConnectionstring" Type="varchar" Mode="In" />
+          <Parameter Name="fromDBName" Type="varchar" Mode="In" />
+          <Parameter Name="returnVal" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="CalcIndexVariables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FormulaNo" Type="int" Mode="In" />
+          <Parameter Name="siteType" Type="nvarchar" Mode="In" />
+          <Parameter Name="tooConnectionstring" Type="varchar" Mode="In" />
+          <Parameter Name="tooDBName" Type="varchar" Mode="In" />
+          <Parameter Name="fromConnectionstring" Type="varchar" Mode="In" />
+          <Parameter Name="fromDBName" Type="varchar" Mode="In" />
+          <Parameter Name="returnVal" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="MonthlyAggregator" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="origVariableID" Type="int" Mode="In" />
+          <Parameter Name="siteType" Type="nvarchar" Mode="In" />
+          <Parameter Name="tooConnectionstring" Type="varchar" Mode="In" />
+          <Parameter Name="tooDBName" Type="varchar" Mode="In" />
+          <Parameter Name="fromConnectionstring" Type="varchar" Mode="In" />
+          <Parameter Name="fromDBName" Type="varchar" Mode="In" />
+          <Parameter Name="returnVal" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="UpdateSeriesCatalog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SummaryModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="SummaryEntities">
+          <EntitySet Name="AggregateSeries1" EntityType="SummaryModel.AggregateSeries" />
+          <EntitySet Name="DataValues" EntityType="SummaryModel.DataValue" />
+          <EntitySet Name="L1HarvestList" EntityType="SummaryModel.L1HarvestList" />
+          <EntitySet Name="Methods" EntityType="SummaryModel.Method" />
+          <EntitySet Name="Qualifiers" EntityType="SummaryModel.Qualifier" />
+          <EntitySet Name="QualityControlLevels" EntityType="SummaryModel.QualityControlLevel" />
+          <EntitySet Name="SeriesCatalogs" EntityType="SummaryModel.SeriesCatalog" />
+          <EntitySet Name="Sites" EntityType="SummaryModel.Site" />
+          <EntitySet Name="Sources" EntityType="SummaryModel.Source" />
+          <EntitySet Name="Units" EntityType="SummaryModel.Unit" />
+          <EntitySet Name="Variables" EntityType="SummaryModel.Variable" />
+          <AssociationSet Name="FK_DataValues_Methods" Association="SummaryModel.FK_DataValues_Methods">
+            <End Role="Methods" EntitySet="Methods" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Qualifiers" Association="SummaryModel.FK_DataValues_Qualifiers">
+            <End Role="Qualifiers" EntitySet="Qualifiers" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_QualityControlLevels" Association="SummaryModel.FK_DataValues_QualityControlLevels">
+            <End Role="QualityControlLevels" EntitySet="QualityControlLevels" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sites" Association="SummaryModel.FK_DataValues_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sources" Association="SummaryModel.FK_DataValues_Sources">
+            <End Role="Sources" EntitySet="Sources" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Variables" Association="SummaryModel.FK_DataValues_Variables">
+            <End Role="Variables" EntitySet="Variables" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variables_Units" Association="SummaryModel.FK_Variables_Units">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variables_Units1" Association="SummaryModel.FK_Variables_Units1">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+          <FunctionImport Name="UpdateSeriesCatalog">
+            </FunctionImport>
+          <FunctionImport Name="MonthlyAggregator">
+            <Parameter Name="origVariableID" Mode="In" Type="Int32" />
+            <Parameter Name="siteType" Mode="In" Type="String" />
+            <Parameter Name="tooConnectionstring" Mode="In" Type="String" />
+            <Parameter Name="tooDBName" Mode="In" Type="String" />
+            <Parameter Name="fromConnectionstring" Mode="In" Type="String" />
+            <Parameter Name="fromDBName" Mode="In" Type="String" />
+            <Parameter Name="returnVal" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CalcIndexVariables" EntitySet="DataValues" ReturnType="Collection(SummaryModel.DataValue)">
+            <Parameter Name="FormulaNo" Mode="In" Type="Int32" />
+            <Parameter Name="siteType" Mode="In" Type="String" />
+            <Parameter Name="tooConnectionstring" Mode="In" Type="String" />
+            <Parameter Name="tooDBName" Mode="In" Type="String" />
+            <Parameter Name="fromConnectionstring" Mode="In" Type="String" />
+            <Parameter Name="fromDBName" Mode="In" Type="String" />
+            <Parameter Name="returnVal" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BiMonthlyAggregator">
+            <Parameter Name="origVariableID" Mode="In" Type="Int32" />
+            <Parameter Name="siteType" Mode="In" Type="String" />
+            <Parameter Name="tooConnectionstring" Mode="In" Type="String" />
+            <Parameter Name="tooDBName" Mode="In" Type="String" />
+            <Parameter Name="fromConnectionstring" Mode="In" Type="String" />
+            <Parameter Name="fromDBName" Mode="In" Type="String" />
+            <Parameter Name="returnVal" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="IVtoTADxRefs" EntityType="SummaryModel.IVtoTADxRef" />
+          <EntitySet Name="WatershedSeries" EntityType="SummaryModel.WatershedSeries" />
+          <EntitySet Name="IndexValuexRef" EntityType="SummaryModel.IndexValuexRef" />
+        </EntityContainer>
+        <EntityType Name="AggregateSeries">
+          <Key>
+            <PropertyRef Name="AggregateID" />
+          </Key>
+          <Property Name="AggregateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="OriginalVariableID" Type="Int32" Nullable="false" />
+          <Property Name="AggregateMethod" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableID" Type="Int32" Nullable="false" />
+          <Property Name="SourceID" Type="Int32" Nullable="false" />
+          <Property Name="QualityControlLevelID" Type="Int32" Nullable="false" />
+          <Property Name="MethodID" Type="Int32" Nullable="false" />
+          <Property Name="DataTimePeriod" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="L1DBDataSource" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="L1DBInitialCatalog" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="L1DBUsername" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="L1DBPassword" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBDataSource" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBInitialCatalog" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBUsername" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBPassword" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DataValue">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataValue1" Type="Double" Nullable="false" />
+          <Property Name="ValueAccuracy" Type="Double" />
+          <Property Name="LocalDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="UTCOffset" Type="Double" Nullable="false" />
+          <Property Name="DateTimeUTC" Type="DateTime" Nullable="false" />
+          <Property Name="OffsetValue" Type="Double" />
+          <Property Name="OffsetTypeID" Type="Int32" />
+          <Property Name="CensorCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SampleID" Type="Int32" />
+          <Property Name="DerivedFromID" Type="Int32" />
+          <NavigationProperty Name="Method" Relationship="SummaryModel.FK_DataValues_Methods" FromRole="DataValues" ToRole="Methods" />
+          <NavigationProperty Name="Qualifier" Relationship="SummaryModel.FK_DataValues_Qualifiers" FromRole="DataValues" ToRole="Qualifiers" />
+          <NavigationProperty Name="QualityControlLevel" Relationship="SummaryModel.FK_DataValues_QualityControlLevels" FromRole="DataValues" ToRole="QualityControlLevels" />
+          <NavigationProperty Name="Site" Relationship="SummaryModel.FK_DataValues_Sites" FromRole="DataValues" ToRole="Sites" />
+          <NavigationProperty Name="Source" Relationship="SummaryModel.FK_DataValues_Sources" FromRole="DataValues" ToRole="Sources" />
+          <NavigationProperty Name="Variable" Relationship="SummaryModel.FK_DataValues_Variables" FromRole="DataValues" ToRole="Variables" />
+        </EntityType>
+        <EntityType Name="L1HarvestList">
+          <Key>
+            <PropertyRef Name="HarvestID" />
+          </Key>
+          <Property Name="HarvestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SiteName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WebServiceURL" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="VariableID" Type="Int32" Nullable="false" />
+          <Property Name="SourceID" Type="Int32" Nullable="false" />
+          <Property Name="QualityControlLevelID" Type="Int32" Nullable="false" />
+          <Property Name="MethodID" Type="Int32" Nullable="false" />
+          <Property Name="SiteType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBDataSource" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBInitialCatalog" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBUsername" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DBPassword" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Method">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MethodDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MethodLink" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataValues" Relationship="SummaryModel.FK_DataValues_Methods" FromRole="Methods" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="Qualifier">
+          <Key>
+            <PropertyRef Name="QualifierID" />
+          </Key>
+          <Property Name="QualifierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QualifierCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="QualifierDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataValues" Relationship="SummaryModel.FK_DataValues_Qualifiers" FromRole="Qualifiers" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="QualityControlLevel">
+          <Key>
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Name="QualityControlLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QualityControlLevelCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Definition" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Explanation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataValues" Relationship="SummaryModel.FK_DataValues_QualityControlLevels" FromRole="QualityControlLevels" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="SeriesCatalog">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="Int32" />
+          <Property Name="SiteCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SiteName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VariableID" Type="Int32" />
+          <Property Name="VariableCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Speciation" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VariableUnitsID" Type="Int32" />
+          <Property Name="VariableUnitsName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SampleMedium" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ValueType" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="TimeSupport" Type="Double" />
+          <Property Name="TimeUnitsID" Type="Int32" />
+          <Property Name="TimeUnitsName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DataType" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GeneralCategory" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MethodID" Type="Int32" />
+          <Property Name="MethodDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SourceID" Type="Int32" />
+          <Property Name="Organization" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SourceDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Citation" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="QualityControlLevelID" Type="Int32" />
+          <Property Name="QualityControlLevelCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BeginDateTime" Type="DateTime" />
+          <Property Name="EndDateTime" Type="DateTime" />
+          <Property Name="BeginDateTimeUTC" Type="DateTime" />
+          <Property Name="EndDateTimeUTC" Type="DateTime" />
+          <Property Name="ValueCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SiteName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="LatLongDatumID" Type="Int32" Nullable="false" />
+          <Property Name="Elevation_m" Type="Double" />
+          <Property Name="VerticalDatum" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="LocalX" Type="Double" />
+          <Property Name="LocalY" Type="Double" />
+          <Property Name="LocalProjectionID" Type="Int32" />
+          <Property Name="PosAccuracy_m" Type="Double" />
+          <Property Name="State" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="County" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataValues" Relationship="SummaryModel.FK_DataValues_Sites" FromRole="Sites" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Organization" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SourceDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SourceLink" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Citation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetadataID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataValues" Relationship="SummaryModel.FK_DataValues_Sources" FromRole="Sources" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="UnitsID" />
+          </Key>
+          <Property Name="UnitsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitsName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="UnitsType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="UnitsAbbreviation" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Variables" Relationship="SummaryModel.FK_Variables_Units" FromRole="Units" ToRole="Variables" />
+          <NavigationProperty Name="Variables1" Relationship="SummaryModel.FK_Variables_Units1" FromRole="Units" ToRole="Variables" />
+        </EntityType>
+        <EntityType Name="Variable">
+          <Key>
+            <PropertyRef Name="VariableID" />
+          </Key>
+          <Property Name="VariableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VariableCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Speciation" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SampleMedium" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ValueType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsRegular" Type="Boolean" Nullable="false" />
+          <Property Name="TimeSupport" Type="Double" Nullable="false" />
+          <Property Name="DataType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GeneralCategory" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="NoDataValue" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DataValues" Relationship="SummaryModel.FK_DataValues_Variables" FromRole="Variables" ToRole="DataValues" />
+          <NavigationProperty Name="Unit" Relationship="SummaryModel.FK_Variables_Units" FromRole="Variables" ToRole="Units" />
+          <NavigationProperty Name="Unit1" Relationship="SummaryModel.FK_Variables_Units1" FromRole="Variables" ToRole="Units" />
+          <Property Type="Int32" Name="MonthlyDVMin" />
+        </EntityType>
+        <Association Name="FK_DataValues_Methods">
+          <End Role="Methods" Type="SummaryModel.Method" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.DataValue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_Qualifiers">
+          <End Role="Qualifiers" Type="SummaryModel.Qualifier" Multiplicity="0..1" />
+          <End Role="DataValues" Type="SummaryModel.DataValue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_QualityControlLevels">
+          <End Role="QualityControlLevels" Type="SummaryModel.QualityControlLevel" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.DataValue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_Sites">
+          <End Role="Sites" Type="SummaryModel.Site" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.DataValue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_Sources">
+          <End Role="Sources" Type="SummaryModel.Source" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.DataValue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_Variables">
+          <End Role="Variables" Type="SummaryModel.Variable" Multiplicity="1" />
+          <End Role="DataValues" Type="SummaryModel.DataValue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Variables_Units">
+          <End Role="Units" Type="SummaryModel.Unit" Multiplicity="1" />
+          <End Role="Variables" Type="SummaryModel.Variable" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Variables_Units1">
+          <End Role="Units" Type="SummaryModel.Unit" Multiplicity="1" />
+          <End Role="Variables" Type="SummaryModel.Variable" Multiplicity="*" />
+        </Association>
+        <EntityType Name="IVtoTADxRef">
+          <Key>
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="SiteIDTAD" />
+            <PropertyRef Name="VariableIDTAD" />
+            <PropertyRef Name="MethodIDTAD" />
+            <PropertyRef Name="QualityControlLevelIDTAD" />
+            <PropertyRef Name="SourceIDTAD" />
+            <PropertyRef Name="SiteIDIV" />
+            <PropertyRef Name="SiteCodeIV" />
+            <PropertyRef Name="VariableIDIV" />
+            <PropertyRef Name="VariableCodeIV" />
+            <PropertyRef Name="MethodIDIV" />
+            <PropertyRef Name="QualityControlLevelIDIV" />
+            <PropertyRef Name="SourceIDIV" />
+            <PropertyRef Name="Weight" />
+          </Key>
+          <Property Type="String" Name="SiteType" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SiteIDTAD" Nullable="false" />
+          <Property Type="String" Name="SiteCodeTAD" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VariableIDTAD" Nullable="false" />
+          <Property Type="String" Name="VariableCodeTAD" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MethodIDTAD" Nullable="false" />
+          <Property Type="Int32" Name="QualityControlLevelIDTAD" Nullable="false" />
+          <Property Type="Int32" Name="SourceIDTAD" Nullable="false" />
+          <Property Type="Int32" Name="SiteIDIV" Nullable="false" />
+          <Property Type="String" Name="SiteCodeIV" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VariableIDIV" Nullable="false" />
+          <Property Type="String" Name="VariableCodeIV" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MethodIDIV" Nullable="false" />
+          <Property Type="Int32" Name="QualityControlLevelIDIV" Nullable="false" />
+          <Property Type="Int32" Name="SourceIDIV" Nullable="false" />
+          <Property Type="Int32" Name="FormulaNo" />
+          <Property Type="Double" Name="Weight" Nullable="false" />
+          <Property Type="String" Name="TADDBDataSource" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TADDBInitialCatalog" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TADDBUsername" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TADDBPassword" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IVDBDataSource" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IVDBInitialCatalog" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IVDBUsername" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IVDBPassword" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WatershedSeries">
+          <Key>
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="DataTimePeriod" />
+            <PropertyRef Name="L3VariableCode" />
+            <PropertyRef Name="L3MethodID" />
+            <PropertyRef Name="VariableCode" />
+            <PropertyRef Name="MethodID" />
+            <PropertyRef Name="SourceID" />
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Type="String" Name="SiteType" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DataTimePeriod" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="L3VariableID" />
+          <Property Type="String" Name="L3VariableCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="L3MethodID" Nullable="false" />
+          <Property Type="Int32" Name="VariableID" />
+          <Property Type="String" Name="VariableCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MethodID" Nullable="false" />
+          <Property Type="Int32" Name="SourceID" Nullable="false" />
+          <Property Type="Int32" Name="QualityControlLevelID" Nullable="false" />
+          <Property Type="String" Name="L3DBDataSource" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="L3DBInitialCatalog" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="L3DBUsername" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="L3DBPassword" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBDataSource" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBInitialCatalog" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBUsername" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBPassword" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IndexValuexRef">
+          <Key>
+            <PropertyRef Name="SiteType" />
+            <PropertyRef Name="DataTimePeriod" />
+            <PropertyRef Name="L3VariableID" />
+            <PropertyRef Name="L3MethodID" />
+            <PropertyRef Name="VariableID" />
+            <PropertyRef Name="MethodID" />
+            <PropertyRef Name="SourceID" />
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Type="String" Name="SiteType" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DataTimePeriod" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="L3VariableID" Nullable="false" />
+          <Property Type="String" Name="L3VariableCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="L3MethodID" Nullable="false" />
+          <Property Type="Int32" Name="VariableID" Nullable="false" />
+          <Property Type="String" Name="VariableCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MethodID" Nullable="false" />
+          <Property Type="Int32" Name="SourceID" Nullable="false" />
+          <Property Type="Int32" Name="QualityControlLevelID" Nullable="false" />
+          <Property Type="String" Name="L3DBDataSource" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="L3DBInitialCatalog" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="L3DBUsername" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="L3DBPassword" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBDataSource" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBInitialCatalog" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBUsername" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DBPassword" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SummaryModelStoreContainer" CdmEntityContainer="SummaryEntities">
+          <EntitySetMapping Name="AggregateSeries1"><EntityTypeMapping TypeName="SummaryModel.AggregateSeries"><MappingFragment StoreEntitySet="AggregateSeries">
+            <ScalarProperty Name="AggregateID" ColumnName="AggregateID" />
+            <ScalarProperty Name="SiteType" ColumnName="SiteType" />
+            <ScalarProperty Name="OriginalVariableID" ColumnName="OriginalVariableID" />
+            <ScalarProperty Name="AggregateMethod" ColumnName="AggregateMethod" />
+            <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+            <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+            <ScalarProperty Name="DataTimePeriod" ColumnName="DataTimePeriod" />
+            <ScalarProperty Name="L1DBDataSource" ColumnName="L1DBDataSource" />
+            <ScalarProperty Name="L1DBInitialCatalog" ColumnName="L1DBInitialCatalog" />
+            <ScalarProperty Name="L1DBUsername" ColumnName="L1DBUsername" />
+            <ScalarProperty Name="L1DBPassword" ColumnName="L1DBPassword" />
+            <ScalarProperty Name="DBDataSource" ColumnName="DBDataSource" />
+            <ScalarProperty Name="DBInitialCatalog" ColumnName="DBInitialCatalog" />
+            <ScalarProperty Name="DBUsername" ColumnName="DBUsername" />
+            <ScalarProperty Name="DBPassword" ColumnName="DBPassword" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DataValues"><EntityTypeMapping TypeName="SummaryModel.DataValue"><MappingFragment StoreEntitySet="DataValues">
+            <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            <ScalarProperty Name="DataValue1" ColumnName="DataValue" />
+            <ScalarProperty Name="ValueAccuracy" ColumnName="ValueAccuracy" />
+            <ScalarProperty Name="LocalDateTime" ColumnName="LocalDateTime" />
+            <ScalarProperty Name="UTCOffset" ColumnName="UTCOffset" />
+            <ScalarProperty Name="DateTimeUTC" ColumnName="DateTimeUTC" />
+            <ScalarProperty Name="OffsetValue" ColumnName="OffsetValue" />
+            <ScalarProperty Name="OffsetTypeID" ColumnName="OffsetTypeID" />
+            <ScalarProperty Name="CensorCode" ColumnName="CensorCode" />
+            <ScalarProperty Name="SampleID" ColumnName="SampleID" />
+            <ScalarProperty Name="DerivedFromID" ColumnName="DerivedFromID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="L1HarvestList"><EntityTypeMapping TypeName="SummaryModel.L1HarvestList"><MappingFragment StoreEntitySet="L1HarvestList">
+            <ScalarProperty Name="HarvestID" ColumnName="HarvestID" />
+            <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+            <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+            <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+            <ScalarProperty Name="WebServiceURL" ColumnName="WebServiceURL" />
+            <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+            <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+            <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+            <ScalarProperty Name="SiteType" ColumnName="SiteType" />
+            <ScalarProperty Name="DBDataSource" ColumnName="DBDataSource" />
+            <ScalarProperty Name="DBInitialCatalog" ColumnName="DBInitialCatalog" />
+            <ScalarProperty Name="DBUsername" ColumnName="DBUsername" />
+            <ScalarProperty Name="DBPassword" ColumnName="DBPassword" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Methods"><EntityTypeMapping TypeName="SummaryModel.Method"><MappingFragment StoreEntitySet="Methods">
+            <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+            <ScalarProperty Name="MethodDescription" ColumnName="MethodDescription" />
+            <ScalarProperty Name="MethodLink" ColumnName="MethodLink" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Qualifiers"><EntityTypeMapping TypeName="SummaryModel.Qualifier"><MappingFragment StoreEntitySet="Qualifiers">
+            <ScalarProperty Name="QualifierID" ColumnName="QualifierID" />
+            <ScalarProperty Name="QualifierCode" ColumnName="QualifierCode" />
+            <ScalarProperty Name="QualifierDescription" ColumnName="QualifierDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="QualityControlLevels"><EntityTypeMapping TypeName="SummaryModel.QualityControlLevel"><MappingFragment StoreEntitySet="QualityControlLevels">
+            <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+            <ScalarProperty Name="QualityControlLevelCode" ColumnName="QualityControlLevelCode" />
+            <ScalarProperty Name="Definition" ColumnName="Definition" />
+            <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SeriesCatalogs"><EntityTypeMapping TypeName="SummaryModel.SeriesCatalog"><MappingFragment StoreEntitySet="SeriesCatalog">
+            <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+            <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+            <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+            <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+            <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+            <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+            <ScalarProperty Name="Speciation" ColumnName="Speciation" />
+            <ScalarProperty Name="VariableUnitsID" ColumnName="VariableUnitsID" />
+            <ScalarProperty Name="VariableUnitsName" ColumnName="VariableUnitsName" />
+            <ScalarProperty Name="SampleMedium" ColumnName="SampleMedium" />
+            <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+            <ScalarProperty Name="TimeSupport" ColumnName="TimeSupport" />
+            <ScalarProperty Name="TimeUnitsID" ColumnName="TimeUnitsID" />
+            <ScalarProperty Name="TimeUnitsName" ColumnName="TimeUnitsName" />
+            <ScalarProperty Name="DataType" ColumnName="DataType" />
+            <ScalarProperty Name="GeneralCategory" ColumnName="GeneralCategory" />
+            <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+            <ScalarProperty Name="MethodDescription" ColumnName="MethodDescription" />
+            <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            <ScalarProperty Name="Organization" ColumnName="Organization" />
+            <ScalarProperty Name="SourceDescription" ColumnName="SourceDescription" />
+            <ScalarProperty Name="Citation" ColumnName="Citation" />
+            <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+            <ScalarProperty Name="QualityControlLevelCode" ColumnName="QualityControlLevelCode" />
+            <ScalarProperty Name="BeginDateTime" ColumnName="BeginDateTime" />
+            <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+            <ScalarProperty Name="BeginDateTimeUTC" ColumnName="BeginDateTimeUTC" />
+            <ScalarProperty Name="EndDateTimeUTC" ColumnName="EndDateTimeUTC" />
+            <ScalarProperty Name="ValueCount" ColumnName="ValueCount" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sites"><EntityTypeMapping TypeName="SummaryModel.Site"><MappingFragment StoreEntitySet="Sites">
+            <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+            <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+            <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+            <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+            <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+            <ScalarProperty Name="LatLongDatumID" ColumnName="LatLongDatumID" />
+            <ScalarProperty Name="Elevation_m" ColumnName="Elevation_m" />
+            <ScalarProperty Name="VerticalDatum" ColumnName="VerticalDatum" />
+            <ScalarProperty Name="LocalX" ColumnName="LocalX" />
+            <ScalarProperty Name="LocalY" ColumnName="LocalY" />
+            <ScalarProperty Name="LocalProjectionID" ColumnName="LocalProjectionID" />
+            <ScalarProperty Name="PosAccuracy_m" ColumnName="PosAccuracy_m" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="County" ColumnName="County" />
+            <ScalarProperty Name="Comments" ColumnName="Comments" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sources"><EntityTypeMapping TypeName="SummaryModel.Source"><MappingFragment StoreEntitySet="Sources">
+            <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            <ScalarProperty Name="Organization" ColumnName="Organization" />
+            <ScalarProperty Name="SourceDescription" ColumnName="SourceDescription" />
+            <ScalarProperty Name="SourceLink" ColumnName="SourceLink" />
+            <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+            <ScalarProperty Name="Citation" ColumnName="Citation" />
+            <ScalarProperty Name="MetadataID" ColumnName="MetadataID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Units"><EntityTypeMapping TypeName="SummaryModel.Unit"><MappingFragment StoreEntitySet="Units">
+            <ScalarProperty Name="UnitsID" ColumnName="UnitsID" />
+            <ScalarProperty Name="UnitsName" ColumnName="UnitsName" />
+            <ScalarProperty Name="UnitsType" ColumnName="UnitsType" />
+            <ScalarProperty Name="UnitsAbbreviation" ColumnName="UnitsAbbreviation" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Variables"><EntityTypeMapping TypeName="SummaryModel.Variable"><MappingFragment StoreEntitySet="Variables">
+            <ScalarProperty Name="MonthlyDVMin" ColumnName="MonthlyDVMin" />
+                <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+            <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+            <ScalarProperty Name="Speciation" ColumnName="Speciation" />
+            <ScalarProperty Name="SampleMedium" ColumnName="SampleMedium" />
+            <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+            <ScalarProperty Name="IsRegular" ColumnName="IsRegular" />
+            <ScalarProperty Name="TimeSupport" ColumnName="TimeSupport" />
+            <ScalarProperty Name="DataType" ColumnName="DataType" />
+            <ScalarProperty Name="GeneralCategory" ColumnName="GeneralCategory" />
+            <ScalarProperty Name="NoDataValue" ColumnName="NoDataValue" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Methods" TypeName="SummaryModel.FK_DataValues_Methods" StoreEntitySet="DataValues">
+            <EndProperty Name="Methods">
+              <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Qualifiers" TypeName="SummaryModel.FK_DataValues_Qualifiers" StoreEntitySet="DataValues">
+            <EndProperty Name="Qualifiers">
+              <ScalarProperty Name="QualifierID" ColumnName="QualifierID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+            <Condition ColumnName="QualifierID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_QualityControlLevels" TypeName="SummaryModel.FK_DataValues_QualityControlLevels" StoreEntitySet="DataValues">
+            <EndProperty Name="QualityControlLevels">
+              <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Sites" TypeName="SummaryModel.FK_DataValues_Sites" StoreEntitySet="DataValues">
+            <EndProperty Name="Sites">
+              <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Sources" TypeName="SummaryModel.FK_DataValues_Sources" StoreEntitySet="DataValues">
+            <EndProperty Name="Sources">
+              <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Variables" TypeName="SummaryModel.FK_DataValues_Variables" StoreEntitySet="DataValues">
+            <EndProperty Name="Variables">
+              <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Variables_Units" TypeName="SummaryModel.FK_Variables_Units" StoreEntitySet="Variables">
+            <EndProperty Name="Units">
+              <ScalarProperty Name="UnitsID" ColumnName="VariableUnitsID" />
+            </EndProperty>
+            <EndProperty Name="Variables">
+              <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Variables_Units1" TypeName="SummaryModel.FK_Variables_Units1" StoreEntitySet="Variables">
+            <EndProperty Name="Units">
+              <ScalarProperty Name="UnitsID" ColumnName="TimeUnitsID" />
+            </EndProperty>
+            <EndProperty Name="Variables">
+              <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="UpdateSeriesCatalog" FunctionName="SummaryModel.Store.UpdateSeriesCatalog" />
+          <FunctionImportMapping FunctionImportName="MonthlyAggregator" FunctionName="SummaryModel.Store.MonthlyAggregator" />
+          <FunctionImportMapping FunctionImportName="CalcIndexVariables" FunctionName="SummaryModel.Store.CalcIndexVariables" />
+          <FunctionImportMapping FunctionImportName="BiMonthlyAggregator" FunctionName="SummaryModel.Store.BiMonthlyAggregator" />
+          <EntitySetMapping Name="IVtoTADxRefs">
+            <EntityTypeMapping TypeName="SummaryModel.IVtoTADxRef">
+              <MappingFragment StoreEntitySet="IVtoTADxRef">
+                <ScalarProperty Name="IVDBPassword" ColumnName="IVDBPassword" />
+                <ScalarProperty Name="IVDBUsername" ColumnName="IVDBUsername" />
+                <ScalarProperty Name="IVDBInitialCatalog" ColumnName="IVDBInitialCatalog" />
+                <ScalarProperty Name="IVDBDataSource" ColumnName="IVDBDataSource" />
+                <ScalarProperty Name="TADDBPassword" ColumnName="TADDBPassword" />
+                <ScalarProperty Name="TADDBUsername" ColumnName="TADDBUsername" />
+                <ScalarProperty Name="TADDBInitialCatalog" ColumnName="TADDBInitialCatalog" />
+                <ScalarProperty Name="TADDBDataSource" ColumnName="TADDBDataSource" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="FormulaNo" ColumnName="FormulaNo" />
+                <ScalarProperty Name="SourceIDIV" ColumnName="SourceIDIV" />
+                <ScalarProperty Name="QualityControlLevelIDIV" ColumnName="QualityControlLevelIDIV" />
+                <ScalarProperty Name="MethodIDIV" ColumnName="MethodIDIV" />
+                <ScalarProperty Name="VariableCodeIV" ColumnName="VariableCodeIV" />
+                <ScalarProperty Name="VariableIDIV" ColumnName="VariableIDIV" />
+                <ScalarProperty Name="SiteCodeIV" ColumnName="SiteCodeIV" />
+                <ScalarProperty Name="SiteIDIV" ColumnName="SiteIDIV" />
+                <ScalarProperty Name="SourceIDTAD" ColumnName="SourceIDTAD" />
+                <ScalarProperty Name="QualityControlLevelIDTAD" ColumnName="QualityControlLevelIDTAD" />
+                <ScalarProperty Name="MethodIDTAD" ColumnName="MethodIDTAD" />
+                <ScalarProperty Name="VariableCodeTAD" ColumnName="VariableCodeTAD" />
+                <ScalarProperty Name="VariableIDTAD" ColumnName="VariableIDTAD" />
+                <ScalarProperty Name="SiteCodeTAD" ColumnName="SiteCodeTAD" />
+                <ScalarProperty Name="SiteIDTAD" ColumnName="SiteIDTAD" />
+                <ScalarProperty Name="SiteType" ColumnName="SiteType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WatershedSeries">
+            <EntityTypeMapping TypeName="SummaryModel.WatershedSeries">
+              <MappingFragment StoreEntitySet="WatershedSeries">
+                <ScalarProperty Name="DBPassword" ColumnName="DBPassword" />
+                <ScalarProperty Name="DBUsername" ColumnName="DBUsername" />
+                <ScalarProperty Name="DBInitialCatalog" ColumnName="DBInitialCatalog" />
+                <ScalarProperty Name="DBDataSource" ColumnName="DBDataSource" />
+                <ScalarProperty Name="L3DBPassword" ColumnName="L3DBPassword" />
+                <ScalarProperty Name="L3DBUsername" ColumnName="L3DBUsername" />
+                <ScalarProperty Name="L3DBInitialCatalog" ColumnName="L3DBInitialCatalog" />
+                <ScalarProperty Name="L3DBDataSource" ColumnName="L3DBDataSource" />
+                <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+                <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+                <ScalarProperty Name="L3MethodID" ColumnName="L3MethodID" />
+                <ScalarProperty Name="L3VariableCode" ColumnName="L3VariableCode" />
+                <ScalarProperty Name="L3VariableID" ColumnName="L3VariableID" />
+                <ScalarProperty Name="DataTimePeriod" ColumnName="DataTimePeriod" />
+                <ScalarProperty Name="SiteType" ColumnName="SiteType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndexValuexRef">
+            <EntityTypeMapping TypeName="SummaryModel.IndexValuexRef">
+              <MappingFragment StoreEntitySet="IndexValuexRef">
+                <ScalarProperty Name="DBPassword" ColumnName="DBPassword" />
+                <ScalarProperty Name="DBUsername" ColumnName="DBUsername" />
+                <ScalarProperty Name="DBInitialCatalog" ColumnName="DBInitialCatalog" />
+                <ScalarProperty Name="DBDataSource" ColumnName="DBDataSource" />
+                <ScalarProperty Name="L3DBPassword" ColumnName="L3DBPassword" />
+                <ScalarProperty Name="L3DBUsername" ColumnName="L3DBUsername" />
+                <ScalarProperty Name="L3DBInitialCatalog" ColumnName="L3DBInitialCatalog" />
+                <ScalarProperty Name="L3DBDataSource" ColumnName="L3DBDataSource" />
+                <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+                <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+                <ScalarProperty Name="L3MethodID" ColumnName="L3MethodID" />
+                <ScalarProperty Name="L3VariableCode" ColumnName="L3VariableCode" />
+                <ScalarProperty Name="L3VariableID" ColumnName="L3VariableID" />
+                <ScalarProperty Name="DataTimePeriod" ColumnName="DataTimePeriod" />
+                <ScalarProperty Name="SiteType" ColumnName="SiteType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SummaryModel" ZoomLevel="79">
+        <EntityTypeShape EntityType="SummaryModel.AggregateSeries" Width="1.5" PointX="2.125" PointY="7.5" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.DataValue" Width="1.5" PointX="7" PointY="0.5" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.L1HarvestList" Width="1.5" PointX="0.5" PointY="7.5" Height="3.9033007812499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.Method" Width="1.5" PointX="2.125" PointY="4.75" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.Qualifier" Width="1.5" PointX="3.75" PointY="4.25" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.QualityControlLevel" Width="1.5" PointX="2.125" PointY="0.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.SeriesCatalog" Width="1.5" PointX="8.625" PointY="0.5" Height="6.787822265625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.Site" Width="1.5" PointX="0.5" PointY="0.5" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.Source" Width="1.5" PointX="3.75" PointY="0.5" Height="3.7109993489583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.Unit" Width="1.5" PointX="2.125" PointY="2.5" Height="2.1725878906249991" IsExpanded="true" />
+        <EntityTypeShape EntityType="SummaryModel.Variable" Width="1.5" PointX="5.375" PointY="0.5" Height="3.7109993489583317" IsExpanded="true" />
+        <AssociationConnector Association="SummaryModel.FK_DataValues_Methods" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.625" PointY="6.3192350260416665" />
+          <ConnectorPoint PointX="7.7812525" PointY="6.3192350260416665" />
+          <ConnectorPoint PointX="7.7812525" PointY="4.7879036458333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="SummaryModel.FK_DataValues_Qualifiers" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="4.5189518229166659" />
+          <ConnectorPoint PointX="5.4746191406250011" PointY="4.518951822916665" />
+          <ConnectorPoint PointX="5.6412858072916672" PointY="4.5189518229166659" />
+          <ConnectorPoint PointX="7" PointY="4.5189518229166659" />
+        </AssociationConnector>
+        <AssociationConnector Association="SummaryModel.FK_DataValues_QualityControlLevels" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.625" PointY="0.50115284615384614" />
+          <ConnectorPoint PointX="4.0011528461538459" PointY="0.125" />
+          <ConnectorPoint PointX="6.6007692307692309" PointY="0.125" />
+          <ConnectorPoint PointX="7" PointY="0.52423076923076917" />
+        </AssociationConnector>
+        <AssociationConnector Association="SummaryModel.FK_DataValues_Sites" ManuallyRouted="false">
+          <ConnectorPoint PointX="2" PointY="0.56230669230769226" />
+          <ConnectorPoint PointX="2.3748066923076925" PointY="0.1875" />
+          <ConnectorPoint PointX="3.8553195128205124" PointY="0.18749999999999942" />
+          <ConnectorPoint PointX="4.021986179487179" PointY="0.1875" />
+          <ConnectorPoint PointX="6.6886528461538459" PointY="0.1875" />
+          <ConnectorPoint PointX="7.0011528461538459" PointY="0.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="SummaryModel.FK_DataValues_Sources" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="4.2109993489583317" />
+          <ConnectorPoint PointX="5.625" PointY="4.5859993489583317" />
+          <ConnectorPoint PointX="5.625" PointY="5.1629036458333317" />
+          <ConnectorPoint PointX="6.625" PointY="5.1629036458333317" />
+          <ConnectorPoint PointX="7" PointY="4.7879036458333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="SummaryModel.FK_DataValues_Variables" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="2.4950182752403851" />
+          <ConnectorPoint PointX="7" PointY="2.4950182752403851" />
+        </AssociationConnector>
+        <AssociationConnector Association="SummaryModel.FK_Variables_Units" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.625" PointY="3.8734934316406253" />
+          <ConnectorPoint PointX="3.6875" PointY="3.8734934316406253" />
+          <ConnectorPoint PointX="3.6875" PointY="0.4375" />
+          <ConnectorPoint PointX="6.2968735" PointY="0.4375" />
+          <ConnectorPoint PointX="6.2968735" PointY="0.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="SummaryModel.FK_Variables_Units1" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.625" PointY="3.1554947158203119" />
+          <ConnectorPoint PointX="3.6875" PointY="3.1554947158203119" />
+          <ConnectorPoint PointX="3.6875" PointY="0.4375" />
+          <ConnectorPoint PointX="5.80468475" PointY="0.4375" />
+          <ConnectorPoint PointX="5.80468475" PointY="0.5" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SummaryModel.IVtoTADxRef" Width="1.5" PointX="3.75" PointY="7.5" Height="5.8263151041666674" />
+        <EntityTypeShape EntityType="SummaryModel.WatershedSeries" Width="1.5" PointX="5.375" PointY="7.5" Height="4.4802050781250031" />
+        <EntityTypeShape EntityType="SummaryModel.IndexValuexRef" Width="1.5" PointX="7" PointY="7.5" Height="4.4802050781250031" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

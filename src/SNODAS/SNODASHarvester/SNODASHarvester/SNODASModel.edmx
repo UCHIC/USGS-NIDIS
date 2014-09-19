@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SNODASModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SNODASModelStoreContainer">
+          <EntitySet Name="DataValues" EntityType="SNODASModel.Store.DataValues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Methods" EntityType="SNODASModel.Store.Methods" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QualityControlLevels" EntityType="SNODASModel.Store.QualityControlLevels" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SeriesCatalog" EntityType="SNODASModel.Store.SeriesCatalog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sites" EntityType="SNODASModel.Store.Sites" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sources" EntityType="SNODASModel.Store.Sources" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Variables" EntityType="SNODASModel.Store.Variables" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DataValues_Methods" Association="SNODASModel.Store.FK_DataValues_Methods">
+            <End Role="Methods" EntitySet="Methods" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_QualityControlLevels" Association="SNODASModel.Store.FK_DataValues_QualityControlLevels">
+            <End Role="QualityControlLevels" EntitySet="QualityControlLevels" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sites" Association="SNODASModel.Store.FK_DataValues_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sources" Association="SNODASModel.Store.FK_DataValues_Sources">
+            <End Role="Sources" EntitySet="Sources" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Variables" Association="SNODASModel.Store.FK_DataValues_Variables">
+            <End Role="Variables" EntitySet="Variables" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DataValues">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DataValue" Type="float" Nullable="false" />
+          <Property Name="ValueAccuracy" Type="float" />
+          <Property Name="LocalDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UTCOffset" Type="float" Nullable="false" />
+          <Property Name="DateTimeUTC" Type="datetime" Nullable="false" />
+          <Property Name="SiteID" Type="int" Nullable="false" />
+          <Property Name="VariableID" Type="int" Nullable="false" />
+          <Property Name="OffsetValue" Type="float" />
+          <Property Name="OffsetTypeID" Type="int" />
+          <Property Name="CensorCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="QualifierID" Type="int" />
+          <Property Name="MethodID" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="int" Nullable="false" />
+          <Property Name="SampleID" Type="int" />
+          <Property Name="DerivedFromID" Type="int" />
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Methods">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MethodDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MethodLink" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="QualityControlLevels">
+          <Key>
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Name="QualityControlLevelID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QualityControlLevelCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Definition" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Explanation" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeriesCatalog">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="int" />
+          <Property Name="SiteCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="255" />
+          <Property Name="VariableID" Type="int" />
+          <Property Name="VariableCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="VariableName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Speciation" Type="nvarchar" MaxLength="255" />
+          <Property Name="VariableUnitsID" Type="int" />
+          <Property Name="VariableUnitsName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SampleMedium" Type="nvarchar" MaxLength="255" />
+          <Property Name="ValueType" Type="nvarchar" MaxLength="255" />
+          <Property Name="TimeSupport" Type="float" />
+          <Property Name="TimeUnitsID" Type="int" />
+          <Property Name="TimeUnitsName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataType" Type="nvarchar" MaxLength="255" />
+          <Property Name="GeneralCategory" Type="nvarchar" MaxLength="255" />
+          <Property Name="MethodID" Type="int" />
+          <Property Name="MethodDescription" Type="nvarchar(max)" />
+          <Property Name="SourceID" Type="int" />
+          <Property Name="Organization" Type="nvarchar" MaxLength="255" />
+          <Property Name="SourceDescription" Type="nvarchar(max)" />
+          <Property Name="Citation" Type="nvarchar(max)" />
+          <Property Name="QualityControlLevelID" Type="int" />
+          <Property Name="QualityControlLevelCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BeginDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="BeginDateTimeUTC" Type="datetime" />
+          <Property Name="EndDateTimeUTC" Type="datetime" />
+          <Property Name="ValueCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="LatLongDatumID" Type="int" Nullable="false" />
+          <Property Name="Elevation_m" Type="float" />
+          <Property Name="VerticalDatum" Type="nvarchar" MaxLength="255" />
+          <Property Name="LocalX" Type="float" />
+          <Property Name="LocalY" Type="float" />
+          <Property Name="LocalProjectionID" Type="int" />
+          <Property Name="PosAccuracy_m" Type="float" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="County" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Organization" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="SourceDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SourceLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="ContactName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ZipCode" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Citation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MetadataID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Variables">
+          <Key>
+            <PropertyRef Name="VariableID" />
+          </Key>
+          <Property Name="VariableID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VariableCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="VariableName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Speciation" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="VariableUnitsID" Type="int" Nullable="false" />
+          <Property Name="SampleMedium" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ValueType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="IsRegular" Type="bit" Nullable="false" />
+          <Property Name="TimeSupport" Type="float" Nullable="false" />
+          <Property Name="TimeUnitsID" Type="int" Nullable="false" />
+          <Property Name="DataType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="GeneralCategory" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="NoDataValue" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DataValues_Methods">
+          <End Role="Methods" Type="SNODASModel.Store.Methods" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Methods">
+              <PropertyRef Name="MethodID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="MethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_QualityControlLevels">
+          <End Role="QualityControlLevels" Type="SNODASModel.Store.QualityControlLevels" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualityControlLevels">
+              <PropertyRef Name="QualityControlLevelID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="QualityControlLevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_Sites">
+          <End Role="Sites" Type="SNODASModel.Store.Sites" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_Sources">
+          <End Role="Sources" Type="SNODASModel.Store.Sources" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sources">
+              <PropertyRef Name="SourceID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="SourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValues_Variables">
+          <End Role="Variables" Type="SNODASModel.Store.Variables" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.Store.DataValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variables">
+              <PropertyRef Name="VariableID" />
+            </Principal>
+            <Dependent Role="DataValues">
+              <PropertyRef Name="VariableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SNODASModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="SNODASEntities">
+          <EntitySet Name="DataValues" EntityType="SNODASModel.DataValues" />
+          <EntitySet Name="Methods" EntityType="SNODASModel.Methods" />
+          <EntitySet Name="QualityControlLevels" EntityType="SNODASModel.QualityControlLevels" />
+          <EntitySet Name="SeriesCatalog" EntityType="SNODASModel.SeriesCatalog" />
+          <EntitySet Name="Sites" EntityType="SNODASModel.Sites" />
+          <EntitySet Name="Sources" EntityType="SNODASModel.Sources" />
+          <EntitySet Name="Variables" EntityType="SNODASModel.Variables" />
+          <AssociationSet Name="FK_DataValues_Methods" Association="SNODASModel.FK_DataValues_Methods">
+            <End Role="Methods" EntitySet="Methods" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_QualityControlLevels" Association="SNODASModel.FK_DataValues_QualityControlLevels">
+            <End Role="QualityControlLevels" EntitySet="QualityControlLevels" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sites" Association="SNODASModel.FK_DataValues_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Sources" Association="SNODASModel.FK_DataValues_Sources">
+            <End Role="Sources" EntitySet="Sources" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValues_Variables" Association="SNODASModel.FK_DataValues_Variables">
+            <End Role="Variables" EntitySet="Variables" />
+            <End Role="DataValues" EntitySet="DataValues" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DataValues">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="Int32" Nullable="false" />
+          <Property Name="DataValue" Type="Double" Nullable="false" />
+          <Property Name="ValueAccuracy" Type="Double" />
+          <Property Name="LocalDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="UTCOffset" Type="Double" Nullable="false" />
+          <Property Name="DateTimeUTC" Type="DateTime" Nullable="false" />
+          <Property Name="OffsetValue" Type="Double" />
+          <Property Name="OffsetTypeID" Type="Int32" />
+          <Property Name="CensorCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="QualifierID" Type="Int32" />
+          <Property Name="SampleID" Type="Int32" />
+          <Property Name="DerivedFromID" Type="Int32" />
+          <NavigationProperty Name="Methods" Relationship="SNODASModel.FK_DataValues_Methods" FromRole="DataValues" ToRole="Methods" />
+          <NavigationProperty Name="QualityControlLevels" Relationship="SNODASModel.FK_DataValues_QualityControlLevels" FromRole="DataValues" ToRole="QualityControlLevels" />
+          <NavigationProperty Name="Sites" Relationship="SNODASModel.FK_DataValues_Sites" FromRole="DataValues" ToRole="Sites" />
+          <NavigationProperty Name="Sources" Relationship="SNODASModel.FK_DataValues_Sources" FromRole="DataValues" ToRole="Sources" />
+          <NavigationProperty Name="Variables" Relationship="SNODASModel.FK_DataValues_Variables" FromRole="DataValues" ToRole="Variables" />
+        </EntityType>
+        <EntityType Name="Methods">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="Int32" Nullable="false" />
+          <Property Name="MethodDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MethodLink" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataValues" Relationship="SNODASModel.FK_DataValues_Methods" FromRole="Methods" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="QualityControlLevels">
+          <Key>
+            <PropertyRef Name="QualityControlLevelID" />
+          </Key>
+          <Property Name="QualityControlLevelID" Type="Int32" Nullable="false" />
+          <Property Name="QualityControlLevelCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Definition" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Explanation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataValues" Relationship="SNODASModel.FK_DataValues_QualityControlLevels" FromRole="QualityControlLevels" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="SeriesCatalog">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="Int32" Nullable="false" />
+          <Property Name="SiteID" Type="Int32" />
+          <Property Name="SiteCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SiteName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VariableID" Type="Int32" />
+          <Property Name="VariableCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Speciation" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VariableUnitsID" Type="Int32" />
+          <Property Name="VariableUnitsName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SampleMedium" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ValueType" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="TimeSupport" Type="Double" />
+          <Property Name="TimeUnitsID" Type="Int32" />
+          <Property Name="TimeUnitsName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DataType" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GeneralCategory" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MethodID" Type="Int32" />
+          <Property Name="MethodDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SourceID" Type="Int32" />
+          <Property Name="Organization" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SourceDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Citation" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="QualityControlLevelID" Type="Int32" />
+          <Property Name="QualityControlLevelCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BeginDateTime" Type="DateTime" />
+          <Property Name="EndDateTime" Type="DateTime" />
+          <Property Name="BeginDateTimeUTC" Type="DateTime" />
+          <Property Name="EndDateTimeUTC" Type="DateTime" />
+          <Property Name="ValueCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="SiteCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SiteName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="LatLongDatumID" Type="Int32" Nullable="false" />
+          <Property Name="Elevation_m" Type="Double" />
+          <Property Name="VerticalDatum" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="LocalX" Type="Double" />
+          <Property Name="LocalY" Type="Double" />
+          <Property Name="LocalProjectionID" Type="Int32" />
+          <Property Name="PosAccuracy_m" Type="Double" />
+          <Property Name="State" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="County" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataValues" Relationship="SNODASModel.FK_DataValues_Sites" FromRole="Sites" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="Int32" Nullable="false" />
+          <Property Name="Organization" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SourceDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SourceLink" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Citation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetadataID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataValues" Relationship="SNODASModel.FK_DataValues_Sources" FromRole="Sources" ToRole="DataValues" />
+        </EntityType>
+        <EntityType Name="Variables">
+          <Key>
+            <PropertyRef Name="VariableID" />
+          </Key>
+          <Property Name="VariableID" Type="Int32" Nullable="false" />
+          <Property Name="VariableCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Speciation" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VariableUnitsID" Type="Int32" Nullable="false" />
+          <Property Name="SampleMedium" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ValueType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsRegular" Type="Boolean" Nullable="false" />
+          <Property Name="TimeSupport" Type="Double" Nullable="false" />
+          <Property Name="TimeUnitsID" Type="Int32" Nullable="false" />
+          <Property Name="DataType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GeneralCategory" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="NoDataValue" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DataValues" Relationship="SNODASModel.FK_DataValues_Variables" FromRole="Variables" ToRole="DataValues" />
+        </EntityType>
+        <Association Name="FK_DataValues_Methods">
+          <End Role="Methods" Type="SNODASModel.Methods" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.DataValues" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_QualityControlLevels">
+          <End Role="QualityControlLevels" Type="SNODASModel.QualityControlLevels" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.DataValues" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_Sites">
+          <End Role="Sites" Type="SNODASModel.Sites" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.DataValues" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_Sources">
+          <End Role="Sources" Type="SNODASModel.Sources" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.DataValues" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DataValues_Variables">
+          <End Role="Variables" Type="SNODASModel.Variables" Multiplicity="1" />
+          <End Role="DataValues" Type="SNODASModel.DataValues" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SNODASModelStoreContainer" CdmEntityContainer="SNODASEntities">
+          <EntitySetMapping Name="DataValues">
+            <EntityTypeMapping TypeName="IsTypeOf(SNODASModel.DataValues)">
+              <MappingFragment StoreEntitySet="DataValues">
+                <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+                <ScalarProperty Name="ValueAccuracy" ColumnName="ValueAccuracy" />
+                <ScalarProperty Name="LocalDateTime" ColumnName="LocalDateTime" />
+                <ScalarProperty Name="UTCOffset" ColumnName="UTCOffset" />
+                <ScalarProperty Name="DateTimeUTC" ColumnName="DateTimeUTC" />
+                <ScalarProperty Name="OffsetValue" ColumnName="OffsetValue" />
+                <ScalarProperty Name="OffsetTypeID" ColumnName="OffsetTypeID" />
+                <ScalarProperty Name="CensorCode" ColumnName="CensorCode" />
+                <ScalarProperty Name="QualifierID" ColumnName="QualifierID" />
+                <ScalarProperty Name="SampleID" ColumnName="SampleID" />
+                <ScalarProperty Name="DerivedFromID" ColumnName="DerivedFromID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Methods">
+            <EntityTypeMapping TypeName="IsTypeOf(SNODASModel.Methods)">
+              <MappingFragment StoreEntitySet="Methods">
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="MethodDescription" ColumnName="MethodDescription" />
+                <ScalarProperty Name="MethodLink" ColumnName="MethodLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QualityControlLevels">
+            <EntityTypeMapping TypeName="IsTypeOf(SNODASModel.QualityControlLevels)">
+              <MappingFragment StoreEntitySet="QualityControlLevels">
+                <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+                <ScalarProperty Name="QualityControlLevelCode" ColumnName="QualityControlLevelCode" />
+                <ScalarProperty Name="Definition" ColumnName="Definition" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeriesCatalog">
+            <EntityTypeMapping TypeName="IsTypeOf(SNODASModel.SeriesCatalog)">
+              <MappingFragment StoreEntitySet="SeriesCatalog">
+                <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+                <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+                <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+                <ScalarProperty Name="Speciation" ColumnName="Speciation" />
+                <ScalarProperty Name="VariableUnitsID" ColumnName="VariableUnitsID" />
+                <ScalarProperty Name="VariableUnitsName" ColumnName="VariableUnitsName" />
+                <ScalarProperty Name="SampleMedium" ColumnName="SampleMedium" />
+                <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+                <ScalarProperty Name="TimeSupport" ColumnName="TimeSupport" />
+                <ScalarProperty Name="TimeUnitsID" ColumnName="TimeUnitsID" />
+                <ScalarProperty Name="TimeUnitsName" ColumnName="TimeUnitsName" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="GeneralCategory" ColumnName="GeneralCategory" />
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="MethodDescription" ColumnName="MethodDescription" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="SourceDescription" ColumnName="SourceDescription" />
+                <ScalarProperty Name="Citation" ColumnName="Citation" />
+                <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+                <ScalarProperty Name="QualityControlLevelCode" ColumnName="QualityControlLevelCode" />
+                <ScalarProperty Name="BeginDateTime" ColumnName="BeginDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="BeginDateTimeUTC" ColumnName="BeginDateTimeUTC" />
+                <ScalarProperty Name="EndDateTimeUTC" ColumnName="EndDateTimeUTC" />
+                <ScalarProperty Name="ValueCount" ColumnName="ValueCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="IsTypeOf(SNODASModel.Sites)">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="LatLongDatumID" ColumnName="LatLongDatumID" />
+                <ScalarProperty Name="Elevation_m" ColumnName="Elevation_m" />
+                <ScalarProperty Name="VerticalDatum" ColumnName="VerticalDatum" />
+                <ScalarProperty Name="LocalX" ColumnName="LocalX" />
+                <ScalarProperty Name="LocalY" ColumnName="LocalY" />
+                <ScalarProperty Name="LocalProjectionID" ColumnName="LocalProjectionID" />
+                <ScalarProperty Name="PosAccuracy_m" ColumnName="PosAccuracy_m" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="IsTypeOf(SNODASModel.Sources)">
+              <MappingFragment StoreEntitySet="Sources">
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="SourceDescription" ColumnName="SourceDescription" />
+                <ScalarProperty Name="SourceLink" ColumnName="SourceLink" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Citation" ColumnName="Citation" />
+                <ScalarProperty Name="MetadataID" ColumnName="MetadataID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variables">
+            <EntityTypeMapping TypeName="IsTypeOf(SNODASModel.Variables)">
+              <MappingFragment StoreEntitySet="Variables">
+                <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+                <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+                <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+                <ScalarProperty Name="Speciation" ColumnName="Speciation" />
+                <ScalarProperty Name="VariableUnitsID" ColumnName="VariableUnitsID" />
+                <ScalarProperty Name="SampleMedium" ColumnName="SampleMedium" />
+                <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+                <ScalarProperty Name="IsRegular" ColumnName="IsRegular" />
+                <ScalarProperty Name="TimeSupport" ColumnName="TimeSupport" />
+                <ScalarProperty Name="TimeUnitsID" ColumnName="TimeUnitsID" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="GeneralCategory" ColumnName="GeneralCategory" />
+                <ScalarProperty Name="NoDataValue" ColumnName="NoDataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Methods" TypeName="SNODASModel.FK_DataValues_Methods" StoreEntitySet="DataValues">
+            <EndProperty Name="Methods">
+              <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_QualityControlLevels" TypeName="SNODASModel.FK_DataValues_QualityControlLevels" StoreEntitySet="DataValues">
+            <EndProperty Name="QualityControlLevels">
+              <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Sites" TypeName="SNODASModel.FK_DataValues_Sites" StoreEntitySet="DataValues">
+            <EndProperty Name="Sites">
+              <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Sources" TypeName="SNODASModel.FK_DataValues_Sources" StoreEntitySet="DataValues">
+            <EndProperty Name="Sources">
+              <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DataValues_Variables" TypeName="SNODASModel.FK_DataValues_Variables" StoreEntitySet="DataValues">
+            <EndProperty Name="Variables">
+              <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            </EndProperty>
+            <EndProperty Name="DataValues">
+              <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="SNODASModel">
+        <EntityTypeShape EntityType="SNODASModel.DataValues" Width="1.5" PointX="3" PointY="0.5" Height="4.2879036458333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNODASModel.Methods" Width="1.5" PointX="1" PointY="0.5" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNODASModel.QualityControlLevels" Width="1.5" PointX="0.875" PointY="3" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNODASModel.SeriesCatalog" Width="1.5" PointX="4.625" PointY="0.75" Height="6.787822265625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNODASModel.Sites" Width="1.5" PointX="9.625" PointY="0.5" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNODASModel.Sources" Width="1.5" PointX="6.25" PointY="0.75" Height="3.7109993489583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNODASModel.Variables" Width="1.5" PointX="8" PointY="0.5" Height="3.7109993489583317" IsExpanded="true" />
+        <AssociationConnector Association="SNODASModel.FK_DataValues_Methods" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.5" PointY="1.3939925130208333" />
+          <ConnectorPoint PointX="3" PointY="1.3939925130208333" /></AssociationConnector>
+        <AssociationConnector Association="SNODASModel.FK_DataValues_QualityControlLevels" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.375" PointY="3.8939518229166663" />
+          <ConnectorPoint PointX="3" PointY="3.8939518229166663" />
+          </AssociationConnector>
+        <AssociationConnector Association="SNODASModel.FK_DataValues_Sites" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.375" PointY="0.5" />
+          <ConnectorPoint PointX="10.375" PointY="0.125" />
+          <ConnectorPoint PointX="4.156252" PointY="0.125" />
+          <ConnectorPoint PointX="4.156252" PointY="0.5" />
+          </AssociationConnector>
+        <AssociationConnector Association="SNODASModel.FK_DataValues_Sources" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.25" PointY="2.6054996744791659" />
+          <ConnectorPoint PointX="6.1875" PointY="2.6054996744791659" />
+          <ConnectorPoint PointX="6.1875" PointY="0.4375" />
+          <ConnectorPoint PointX="3.75" PointY="0.4375" />
+          <ConnectorPoint PointX="3.75" PointY="0.5" /></AssociationConnector>
+        <AssociationConnector Association="SNODASModel.FK_DataValues_Variables" ManuallyRouted="false">
+          <ConnectorPoint PointX="8" PointY="0.59375" />
+          <ConnectorPoint PointX="6.270833333333333" PointY="0.59374999999999944" />
+          <ConnectorPoint PointX="6.104166666666667" PointY="0.59375" />
+          <ConnectorPoint PointX="4.5" PointY="0.59375" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

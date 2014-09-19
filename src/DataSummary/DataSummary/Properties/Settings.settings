@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataSummary.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DataSummary_USGSService_WaterOneFlow" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://river.sdsc.edu/wateroneflow/NWIS/DailyValues.asmx</Value>
+    </Setting>
+    <Setting Name="DataSummary_SNOTELService_WaterOneFlow" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://drought.uwrl.usu.edu/SNOTEL/cuahsi_1_1.asmx</Value>
+    </Setting>
+    <Setting Name="projectName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DataSummaryWasser</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

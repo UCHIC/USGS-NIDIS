@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SNOTELCatalogModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SNOTELCatalogModelStoreContainer">
+          <EntitySet Name="Methods" EntityType="SNOTELCatalogModel.Store.Methods" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SeriesCatalog" EntityType="SNOTELCatalogModel.Store.SeriesCatalog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sites" EntityType="SNOTELCatalogModel.Store.Sites" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sources" EntityType="SNOTELCatalogModel.Store.Sources" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Units" EntityType="SNOTELCatalogModel.Store.Units" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Variables" EntityType="SNOTELCatalogModel.Store.Variables" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Variables_Units" Association="SNOTELCatalogModel.Store.FK_Variables_Units">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variables_Units1" Association="SNOTELCatalogModel.Store.FK_Variables_Units1">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Methods">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MethodDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MethodLink" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SeriesCatalog">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteID" Type="int" />
+          <Property Name="SiteCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="255" />
+          <Property Name="VariableID" Type="int" />
+          <Property Name="VariableCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="VariableName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Speciation" Type="nvarchar" MaxLength="255" />
+          <Property Name="VariableUnitsID" Type="int" />
+          <Property Name="VariableUnitsName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SampleMedium" Type="nvarchar" MaxLength="255" />
+          <Property Name="ValueType" Type="nvarchar" MaxLength="255" />
+          <Property Name="TimeSupport" Type="float" />
+          <Property Name="TimeUnitsID" Type="int" />
+          <Property Name="TimeUnitsName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataType" Type="nvarchar" MaxLength="255" />
+          <Property Name="GeneralCategory" Type="nvarchar" MaxLength="255" />
+          <Property Name="MethodID" Type="int" />
+          <Property Name="MethodDescription" Type="nvarchar(max)" />
+          <Property Name="SourceID" Type="int" />
+          <Property Name="Organization" Type="nvarchar" MaxLength="255" />
+          <Property Name="SourceDescription" Type="nvarchar(max)" />
+          <Property Name="Citation" Type="nvarchar(max)" />
+          <Property Name="QualityControlLevelID" Type="int" />
+          <Property Name="QualityControlLevelCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BeginDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="BeginDateTimeUTC" Type="datetime" />
+          <Property Name="EndDateTimeUTC" Type="datetime" />
+          <Property Name="ValueCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="LatLongDatumID" Type="int" Nullable="false" />
+          <Property Name="Elevation_m" Type="float" />
+          <Property Name="VerticalDatum" Type="nvarchar" MaxLength="255" />
+          <Property Name="LocalX" Type="float" />
+          <Property Name="LocalY" Type="float" />
+          <Property Name="LocalProjectionID" Type="int" />
+          <Property Name="PosAccuracy_m" Type="float" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="County" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="TimeZone" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Organization" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="SourceDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SourceLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="ContactName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ZipCode" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Citation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MetadataID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="UnitsID" />
+          </Key>
+          <Property Name="UnitsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UnitsName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UnitsType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UnitsAbbreviation" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Variables">
+          <Key>
+            <PropertyRef Name="VariableID" />
+          </Key>
+          <Property Name="VariableID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VariableCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="VariableName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Speciation" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="VariableUnitsID" Type="int" Nullable="false" />
+          <Property Name="SampleMedium" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ValueType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="IsRegular" Type="bit" Nullable="false" />
+          <Property Name="TimeSupport" Type="float" Nullable="false" />
+          <Property Name="TimeUnitsID" Type="int" Nullable="false" />
+          <Property Name="DataType" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="GeneralCategory" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="NoDataValue" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Variables_Units">
+          <End Role="Units" Type="SNOTELCatalogModel.Store.Units" Multiplicity="1" />
+          <End Role="Variables" Type="SNOTELCatalogModel.Store.Variables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="UnitsID" />
+            </Principal>
+            <Dependent Role="Variables">
+              <PropertyRef Name="VariableUnitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Variables_Units1">
+          <End Role="Units" Type="SNOTELCatalogModel.Store.Units" Multiplicity="1" />
+          <End Role="Variables" Type="SNOTELCatalogModel.Store.Variables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="UnitsID" />
+            </Principal>
+            <Dependent Role="Variables">
+              <PropertyRef Name="TimeUnitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SNOTELCatalogModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="SNOTELEntities">
+          <EntitySet Name="Methods" EntityType="SNOTELCatalogModel.Methods" />
+          <EntitySet Name="SeriesCatalog" EntityType="SNOTELCatalogModel.SeriesCatalog" />
+          <EntitySet Name="Sites" EntityType="SNOTELCatalogModel.Sites" />
+          <EntitySet Name="Sources" EntityType="SNOTELCatalogModel.Sources" />
+          <EntitySet Name="Units" EntityType="SNOTELCatalogModel.Units" />
+          <EntitySet Name="Variables" EntityType="SNOTELCatalogModel.Variables" />
+          <AssociationSet Name="FK_Variables_Units" Association="SNOTELCatalogModel.FK_Variables_Units">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variables_Units1" Association="SNOTELCatalogModel.FK_Variables_Units1">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="Variables" EntitySet="Variables" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Methods">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="Int32" Nullable="false" />
+          <Property Name="MethodDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MethodLink" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SeriesCatalog">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="Int32" Nullable="false" />
+          <Property Name="SiteID" Type="Int32" />
+          <Property Name="SiteCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SiteName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VariableID" Type="Int32" />
+          <Property Name="VariableCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Speciation" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VariableUnitsID" Type="Int32" />
+          <Property Name="VariableUnitsName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SampleMedium" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ValueType" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="TimeSupport" Type="Double" />
+          <Property Name="TimeUnitsID" Type="Int32" />
+          <Property Name="TimeUnitsName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="DataType" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GeneralCategory" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MethodID" Type="Int32" />
+          <Property Name="MethodDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SourceID" Type="Int32" />
+          <Property Name="Organization" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SourceDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Citation" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="QualityControlLevelID" Type="Int32" />
+          <Property Name="QualityControlLevelCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BeginDateTime" Type="DateTime" />
+          <Property Name="EndDateTime" Type="DateTime" />
+          <Property Name="BeginDateTimeUTC" Type="DateTime" />
+          <Property Name="EndDateTimeUTC" Type="DateTime" />
+          <Property Name="ValueCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="Int32" Nullable="false" />
+          <Property Name="SiteCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SiteName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="LatLongDatumID" Type="Int32" Nullable="false" />
+          <Property Name="Elevation_m" Type="Double" />
+          <Property Name="VerticalDatum" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="LocalX" Type="Double" />
+          <Property Name="LocalY" Type="Double" />
+          <Property Name="LocalProjectionID" Type="Int32" />
+          <Property Name="PosAccuracy_m" Type="Double" />
+          <Property Name="State" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="County" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TimeZone" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="Int32" Nullable="false" />
+          <Property Name="Organization" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SourceDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SourceLink" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Citation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetadataID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="UnitsID" />
+          </Key>
+          <Property Name="UnitsID" Type="Int32" Nullable="false" />
+          <Property Name="UnitsName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="UnitsType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="UnitsAbbreviation" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Variables" Relationship="SNOTELCatalogModel.FK_Variables_Units" FromRole="Units" ToRole="Variables" />
+          <NavigationProperty Name="Variables1" Relationship="SNOTELCatalogModel.FK_Variables_Units1" FromRole="Units" ToRole="Variables" />
+        </EntityType>
+        <EntityType Name="Variables">
+          <Key>
+            <PropertyRef Name="VariableID" />
+          </Key>
+          <Property Name="VariableID" Type="Int32" Nullable="false" />
+          <Property Name="VariableCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VariableName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Speciation" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="SampleMedium" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ValueType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsRegular" Type="Boolean" Nullable="false" />
+          <Property Name="TimeSupport" Type="Double" Nullable="false" />
+          <Property Name="DataType" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GeneralCategory" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="NoDataValue" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Units" Relationship="SNOTELCatalogModel.FK_Variables_Units" FromRole="Variables" ToRole="Units" />
+          <NavigationProperty Name="Units1" Relationship="SNOTELCatalogModel.FK_Variables_Units1" FromRole="Variables" ToRole="Units" />
+        </EntityType>
+        <Association Name="FK_Variables_Units">
+          <End Role="Units" Type="SNOTELCatalogModel.Units" Multiplicity="1" />
+          <End Role="Variables" Type="SNOTELCatalogModel.Variables" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Variables_Units1">
+          <End Role="Units" Type="SNOTELCatalogModel.Units" Multiplicity="1" />
+          <End Role="Variables" Type="SNOTELCatalogModel.Variables" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SNOTELCatalogModelStoreContainer" CdmEntityContainer="SNOTELEntities">
+          <EntitySetMapping Name="Methods">
+            <EntityTypeMapping TypeName="IsTypeOf(SNOTELCatalogModel.Methods)">
+              <MappingFragment StoreEntitySet="Methods">
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="MethodDescription" ColumnName="MethodDescription" />
+                <ScalarProperty Name="MethodLink" ColumnName="MethodLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeriesCatalog">
+            <EntityTypeMapping TypeName="IsTypeOf(SNOTELCatalogModel.SeriesCatalog)">
+              <MappingFragment StoreEntitySet="SeriesCatalog">
+                <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+                <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+                <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+                <ScalarProperty Name="Speciation" ColumnName="Speciation" />
+                <ScalarProperty Name="VariableUnitsID" ColumnName="VariableUnitsID" />
+                <ScalarProperty Name="VariableUnitsName" ColumnName="VariableUnitsName" />
+                <ScalarProperty Name="SampleMedium" ColumnName="SampleMedium" />
+                <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+                <ScalarProperty Name="TimeSupport" ColumnName="TimeSupport" />
+                <ScalarProperty Name="TimeUnitsID" ColumnName="TimeUnitsID" />
+                <ScalarProperty Name="TimeUnitsName" ColumnName="TimeUnitsName" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="GeneralCategory" ColumnName="GeneralCategory" />
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="MethodDescription" ColumnName="MethodDescription" />
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="SourceDescription" ColumnName="SourceDescription" />
+                <ScalarProperty Name="Citation" ColumnName="Citation" />
+                <ScalarProperty Name="QualityControlLevelID" ColumnName="QualityControlLevelID" />
+                <ScalarProperty Name="QualityControlLevelCode" ColumnName="QualityControlLevelCode" />
+                <ScalarProperty Name="BeginDateTime" ColumnName="BeginDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="BeginDateTimeUTC" ColumnName="BeginDateTimeUTC" />
+                <ScalarProperty Name="EndDateTimeUTC" ColumnName="EndDateTimeUTC" />
+                <ScalarProperty Name="ValueCount" ColumnName="ValueCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="IsTypeOf(SNOTELCatalogModel.Sites)">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="LatLongDatumID" ColumnName="LatLongDatumID" />
+                <ScalarProperty Name="Elevation_m" ColumnName="Elevation_m" />
+                <ScalarProperty Name="VerticalDatum" ColumnName="VerticalDatum" />
+                <ScalarProperty Name="LocalX" ColumnName="LocalX" />
+                <ScalarProperty Name="LocalY" ColumnName="LocalY" />
+                <ScalarProperty Name="LocalProjectionID" ColumnName="LocalProjectionID" />
+                <ScalarProperty Name="PosAccuracy_m" ColumnName="PosAccuracy_m" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="IsTypeOf(SNOTELCatalogModel.Sources)">
+              <MappingFragment StoreEntitySet="Sources">
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="SourceDescription" ColumnName="SourceDescription" />
+                <ScalarProperty Name="SourceLink" ColumnName="SourceLink" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Citation" ColumnName="Citation" />
+                <ScalarProperty Name="MetadataID" ColumnName="MetadataID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="IsTypeOf(SNOTELCatalogModel.Units)">
+              <MappingFragment StoreEntitySet="Units">
+                <ScalarProperty Name="UnitsID" ColumnName="UnitsID" />
+                <ScalarProperty Name="UnitsName" ColumnName="UnitsName" />
+                <ScalarProperty Name="UnitsType" ColumnName="UnitsType" />
+                <ScalarProperty Name="UnitsAbbreviation" ColumnName="UnitsAbbreviation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variables">
+            <EntityTypeMapping TypeName="IsTypeOf(SNOTELCatalogModel.Variables)">
+              <MappingFragment StoreEntitySet="Variables">
+                <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+                <ScalarProperty Name="VariableCode" ColumnName="VariableCode" />
+                <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+                <ScalarProperty Name="Speciation" ColumnName="Speciation" />
+                <ScalarProperty Name="SampleMedium" ColumnName="SampleMedium" />
+                <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+                <ScalarProperty Name="IsRegular" ColumnName="IsRegular" />
+                <ScalarProperty Name="TimeSupport" ColumnName="TimeSupport" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="GeneralCategory" ColumnName="GeneralCategory" />
+                <ScalarProperty Name="NoDataValue" ColumnName="NoDataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Variables_Units" TypeName="SNOTELCatalogModel.FK_Variables_Units" StoreEntitySet="Variables">
+            <EndProperty Name="Units">
+              <ScalarProperty Name="UnitsID" ColumnName="VariableUnitsID" />
+            </EndProperty>
+            <EndProperty Name="Variables">
+              <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Variables_Units1" TypeName="SNOTELCatalogModel.FK_Variables_Units1" StoreEntitySet="Variables">
+            <EndProperty Name="Units">
+              <ScalarProperty Name="UnitsID" ColumnName="TimeUnitsID" />
+            </EndProperty>
+            <EndProperty Name="Variables">
+              <ScalarProperty Name="VariableID" ColumnName="VariableID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="SnoTelDataModel">
+        <EntityTypeShape EntityType="SNOTELCatalogModel.Methods" Width="1.5" PointX="5.75" PointY="0.75" Height="1.5956835937499998" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNOTELCatalogModel.SeriesCatalog" Width="1.5" PointX="0.5" PointY="4.375" Height="6.8078222656249991" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNOTELCatalogModel.Sites" Width="1.5" PointX="2.75" PointY="5.75" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNOTELCatalogModel.Sources" Width="1.5" PointX="5.75" PointY="3.75" Height="3.518697916666667" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNOTELCatalogModel.Units" Width="1.5" PointX="0.75" PointY="1.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SNOTELCatalogModel.Variables" Width="1.5" PointX="3" PointY="1" Height="3.5186979166666656" IsExpanded="true" />
+        <AssociationConnector Association="SNOTELCatalogModel.FK_Variables_Units" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.1145764202779129" />
+          <ConnectorPoint PointX="3" PointY="3.1145764202779129" />
+          </AssociationConnector>
+        <AssociationConnector Association="SNOTELCatalogModel.FK_Variables_Units1" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.3072882101389567" />
+          <ConnectorPoint PointX="3" PointY="2.3072882101389567" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

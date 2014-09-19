@@ -1,0 +1,51 @@
+SiteCode	SiteName
+USBR_BHR	Bottle Hollow Reservoir
+USBR_BMR	Blue Mesa Reservoir
+USBR_BRL	Brantley Lake
+USBR_BSR	Big Sandy Reservoir
+USBR_CBR	Caballo Reservoir
+USBR_CCP	Cochiti Lake Near Cochiti Pueblo
+USBR_CCR	Currant Creek Reservoir
+USBR_CRR	Crystal Reservoir
+USBR_CSR	Causey Reservoir
+USBR_CWR	Crawford Reservoir
+USBR_DCR	Deer Creek Reservoir
+USBR_EBR	Elephant Butte Reservoir
+USBR_ECR	East Canyon Reservoir Near Morgan
+USBR_EDR	Eden Reservoir
+USBR_EHR	Echo Reservoir
+USBR_FGR	Flaming Gorge Reservoir
+USBR_FOR	Fontenelle Reservoir
+USBR_FRR	Fruitgrowers Reservoir
+USBR_HNR	Huntington North Reservoir
+USBR_HYR	Hyrum Reservoir
+USBR_JGR	Jackson Gulch Reservoir
+USBR_JOR	Jordanelle Reservoir
+USBR_JVR	Joes Valley Reservoir
+USBR_LCR	Lost Creek Reservoir
+USBR_LER	Lemon Reservoir
+USBR_LNH	Lake Nighthorse
+USBR_LPO	Lake Powell
+USBR_LSU	Lake Sumner Nr Fort Sumner
+USBR_MCR	Meeks Cabin Reservoir
+USBR_MHR	McPhee Reservoir
+USBR_MLR	Moon Lake Reservoir
+USBR_MPR	Morrow Point Reservoir
+USBR_NAR	Navajo Reservoir
+USBR_NER	Newton Reservoir
+USBR_PAR	Paonia Reservoir
+USBR_PVR	Pineview Reservoir
+USBR_RFR	Red Fleet Reservoir
+USBR_RGR	Rifle Gap Reservoir
+USBR_RPR	Rockport Reservoir
+USBR_RWR	Ridgway Reservoir
+USBR_SBR	Strawberry Reservoir
+USBR_SCR	Scofield Reservoir
+USBR_SJR	Silver Jack Reservoir
+USBR_SLR	Stateline Reservoir
+USBR_SNR	Steinaker Reservoir
+USBR_STR	Starvation Reservoir
+USBR_TPR	Taylor Park Reservoir
+USBR_USR	Upper Stillwater Reservoir
+USBR_VAR	Vallecito Reservoir
+USBR_ABR	Abiquiu Reservoir
