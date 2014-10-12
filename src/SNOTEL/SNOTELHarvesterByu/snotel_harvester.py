@@ -20,7 +20,10 @@ class SNOTELHarvester():
         self.metadata = sa.MetaData()
         self.variable_lookup = {u'Snow Depth':'SNWD',
                                 u'Air Temperature':'TAVG',
+                                u'Maximum Temperature':'TMAX',
+                                u'Minimum Temperature':'TMIN',
                                 u'Precipitation Accumulation':'PREC',
+                                u'Incremental Precipitation':'PRCP',
                                 u'Snow Water Equivalent':'WTEQ'}
         self.unit_lookup = {'SNWD':'centimeter',
                             'PREC':'millimeter',
@@ -61,6 +64,7 @@ class SNOTELHarvester():
     
     def update_source(self):
         #fills the fields in the ODM sources table
+        #this could be set in yaml file
         source = {'Organization':'USDA NRCS',
                   'SourceDescription':'SNOTEL Data',
                   'SourceLink':'http://www.wcc.nrcs.usda.gov/snow/',
@@ -84,6 +88,7 @@ class SNOTELHarvester():
         
         
     def update_variables(self):
+        #this could be set up in yaml file
         variables = [
         {'VariableCode':'WTEQ',
          'VariableName':'Snow Water Equivalent',
@@ -183,11 +188,13 @@ class SNOTELHarvester():
   
     def strip_quotes(self,text):
         return text.replace('"','').replace('[','')
-    
+
         
     def update_sites(self):
         #fills in the SNOTEL sites
         #uses the file: 'http://www.wcc.nrcs.usda.gov/ftpref/data/water/wcs/map/stations.js'
+        #alternative stations file:
+        # http://www3.wcc.nrcs.usda.gov/nwcc/yearcount?network=sntl&counttype=listwithdiscontinued
         sites_url = 'http://www.wcc.nrcs.usda.gov/ftpref/data/water/wcs/map/stations.js'
         sites = []
         spatial_ref = self.get_odm_object('spatialreferences','SRSID',4326)
@@ -216,8 +223,15 @@ class SNOTELHarvester():
             self.add_odm_object(s, 'sites','SiteID','SiteCode')
     
 
-    def get_variable_code(variable_name):
-        return 'vcode'
+    def get_site_codes(self):
+        site_codes = []
+        with self.db.begin() as conn:
+            t = sa.Table('sites', self.metadata, autoload=True, autoload_with=conn)
+            s = t.select()
+            for row in conn.execute(s):
+                site_codes.append(row['SiteCode'])
+                
+            return site_codes
                 
 
     def get_site_info(self, site_code):
@@ -230,33 +244,66 @@ class SNOTELHarvester():
         content = urllib2.urlopen(url).read()
         soup = BeautifulSoup(content)
         found = soup.find('select', attrs= {'id':'report'})
+        if found == None:
+            print 'No data in site file: ' + url
+            return variables
+            
         opts = found.find_all('option')
         for o in opts:
             option_text = str(o)
             found_dates = re.findall(date_regex, option_text)
-            if len(found_dates) > 0:
-                found_date = datetime.datetime.strptime(found_dates[0],'%Y-%m-%d')
-                variable_name = o.contents[0].replace('(','').strip()
-                if variable_name in snotel_vars:
-                    variables.append({'variable':variable_name, 'date':found_date})
+            if len(found_dates) == 0:
+                continue
+            
+            begdate = datetime.datetime.strptime(found_dates[0],'%Y-%m-%d')
+            variable_name = o.contents[0].replace('(','').strip()
+            
+            if not variable_name in snotel_vars:
+                continue
+            
+            variables.append({'variable':variable_name, 'date':begdate})
+            if variable_name == u'Air Temperature':
+                variables.append({'variable':u'Maximum Temperature', 'date':begdate})
+                variables.append({'variable':u'Minimum Temperature', 'date':begdate})
+            if variable_name == u'Precipitation Accumulation':
+                variables.append({'variable':u'Incremental Precipitation', 'date':begdate})
 
         return variables
         
-        
+    
+    def get_series_timerange(self, begin_time, utc_offset):
+        begin_time_utc = begin_time - datetime.timedelta(hours=utc_offset)
+        d = datetime.date.today()
+        end_time = datetime.datetime(d.year, d.month, d.day)
+        end_time_utc = end_time - datetime.timedelta(hours=utc_offset)
+        value_count = (end_time - begin_time).days
+        return {'BeginDateTime':begin_time,
+                'EndDateTime':end_time,
+                'BeginDateTimeUTC':begin_time_utc,
+                'EndDateTimeUTC':end_time_utc,
+                'ValueCount':value_count}
+
+    
     def insert_series(self, site_code, variable_code, begin_time):
         site = self.get_odm_object('sites', 'SiteCode', site_code)
         source = self.get_odm_object('sources','Organization','USDA NRCS') 
-        vo = self.get_odm_object('variables','VariableCode', v_code)
-            
+        vo = self.get_odm_object('variables','VariableCode', variable_code)       
+        time_range = self.get_series_timerange(begin_time, 7)
+        
+        # this could be simplified, possibly
+        # by combining the site, source, variable and timerange into one dictionary
+        #sc0 = dict(site).update(dict(source)).update(dict(vo)).update(time_range)
+        
         sc = {'SiteID':site['SiteID'],
               'SiteCode':site['SiteCode'],
               'SiteName':site['SiteName'],
               'SiteType':site['SiteType'],
               'VariableID':vo['VariableID'],
               'VariableCode':vo['VariableCode'],
+              'VariableName':vo['VariableName'],
               'Speciation':vo['Speciation'],
               'VariableunitsID':vo['VariableunitsID'],
-              'VariableunitsName':self.variable_lookup[vo['VariableCode']],
+              'VariableunitsName':self.unit_lookup[vo['VariableCode']],
               'SampleMedium':vo['SampleMedium'],
               'ValueType':vo['ValueType'],
               'TimeSupport':vo['TimeSupport'],
@@ -265,49 +312,59 @@ class SNOTELHarvester():
               'DataType':vo['DataType'],
               'GeneralCategory':vo['GeneralCategory'],
               'MethodID':1,
-              'MethodName':'No method specified',
+              'MethodDescription':'No method specified',
               'SourceID':source['SourceID'],
               'Organization':source['Organization'],
+              'SourceDescription':source['SourceDescription'],
               'Citation':source['Citation'],
               'QualityControlLevelID':1,
-              'QualityControlLevelCode':'1'
+              'QualityControlLevelCode':'1',
+              'BeginDateTime':begin_time,
+              'EndDateTime': time_range['EndDateTime'],
+              'BeginDateTimeUTC': time_range['BeginDateTimeUTC'],
+              'EndDateTimeUTC': time_range['EndDateTimeUTC'],
+              'ValueCount': time_range['ValueCount']
               }
         with self.db.begin() as conn:
             t = sa.Table('seriescatalog', self.metadata, autoload=True, autoload_with=conn)
             conn.execute(t.insert(), sc)
+            
 
-    def update_series(self, site_code, variable_code):
-        return 0
+    def update_series(self, series_id, begin_time):
+        timerange = self.get_series_timerange(begin_time, 7)      
+        with self.db.begin() as conn:
+            t = sa.Table('seriescatalog', self.metadata, autoload=True, autoload_with=conn)
+            u = sa.update(t, t.c.SeriesID == series_id)
+            conn.execute(u, timerange)
+
+
+    def find_series(self, site_code, variable_code):
+        with self.db.begin() as conn:
+            t = sa.Table('seriescatalog', self.metadata, autoload=True, autoload_with=conn)
+            s = t.select((t.c['SiteCode'] == site_code) & (t.c['VariableCode'] == variable_code))
+            rs = conn.execute(s)
+            r = rs.fetchone()
+            if r:
+                return r[0]
+            else:
+                return 0
 
             
-    def update_series_catalog(self, site_code, variables):
-        #get the site object
-        utc_offset = -7
-        
+    def update_series_catalog(self, site_code):
+        sc = str(site_code)
+        variables = self.get_site_info(sc)
         #for each variable update the sc
         for v in variables:
             v_code = self.variable_lookup[v['variable']]
             
             #check if an entry already exists in seriesCatalog:
-            with self.db.begin() as conn:
-                t = sa.Table('seriescatalog', self.metadata, autoload=True, autoload_with=conn)
-                s = t.select(t.c['SiteCode'] == site_code and t.c['VariableCode'] == v['VariableCode'])
-                rs = conn.execute(s)
-                r = rs.fetchone()
-                if not r:
-                    #insert new item to seriesCatalog
-                    insert_series(site_code, v_code)
-                else:
-                    #update the seriesCatalog items valueCount and EndDate
-                    update_series(site_code, v_code)
-            rs = conn.execute(s)
-            r = rs.fetchone()
-            return r            
-            
-            
-#get the db's variable
-            v2 = 'vole'
-        return 1
+            series_id = self.find_series(sc, v_code)
+            if series_id == 0:
+                #insert new item to seriesCatalog
+                self.insert_series(sc, v_code, v['date'])
+            else:
+                #update the seriesCatalog items valueCount and EndDate
+                self.update_series(series_id, v['date'])
 
 
 if __name__ == '__main__':
