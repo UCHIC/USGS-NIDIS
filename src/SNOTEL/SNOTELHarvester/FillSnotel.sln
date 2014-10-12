@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateSnotel", "UpdateSnotel\UpdateSnotel.csproj", "{206B85F2-88AE-4DC5-858E-BF3D1448819B}"
 EndProject
 Global
