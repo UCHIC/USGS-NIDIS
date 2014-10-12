@@ -18,6 +18,18 @@ class SNOTELHarvester():
         self.connection_string = connection_string
         self.db = sa.create_engine(self.connection_string)
         self.metadata = sa.MetaData()
+        self.variable_lookup = {u'Snow Depth':'SNWD',
+                                u'Air Temperature':'TAVG',
+                                u'Precipitation Accumulation':'PREC',
+                                u'Snow Water Equivalent':'WTEQ'}
+        self.unit_lookup = {'SNWD':'centimeter',
+                            'PREC':'millimeter',
+                            'WTEQ':'millimeter',
+                            'PRCP':'millimeter',
+                            'TMAX':'degree celsius',
+                            'TMIN':'degree celsius',
+                            'TAVG':'degree celsius',
+                            'TEMP':'degree celsius'}
     
     
     def get_odm_object(self,table_name, primary_key, object_id):
@@ -202,7 +214,11 @@ class SNOTELHarvester():
         
         for s in sites:
             self.add_odm_object(s, 'sites','SiteID','SiteCode')
-                    
+    
+
+    def get_variable_code(variable_name):
+        return 'vcode'
+                
 
     def get_site_info(self, site_code):
         snotel_vars = [u'Precipitation Accumulation',u'Snow Depth', 
@@ -225,10 +241,75 @@ class SNOTELHarvester():
                     variables.append({'variable':variable_name, 'date':found_date})
 
         return variables
-           
+        
+        
+    def insert_series(self, site_code, variable_code, begin_time):
+        site = self.get_odm_object('sites', 'SiteCode', site_code)
+        source = self.get_odm_object('sources','Organization','USDA NRCS') 
+        vo = self.get_odm_object('variables','VariableCode', v_code)
+            
+        sc = {'SiteID':site['SiteID'],
+              'SiteCode':site['SiteCode'],
+              'SiteName':site['SiteName'],
+              'SiteType':site['SiteType'],
+              'VariableID':vo['VariableID'],
+              'VariableCode':vo['VariableCode'],
+              'Speciation':vo['Speciation'],
+              'VariableunitsID':vo['VariableunitsID'],
+              'VariableunitsName':self.variable_lookup[vo['VariableCode']],
+              'SampleMedium':vo['SampleMedium'],
+              'ValueType':vo['ValueType'],
+              'TimeSupport':vo['TimeSupport'],
+              'TimeunitsID':vo['TimeunitsID'],
+              'TimeunitsName':'day',
+              'DataType':vo['DataType'],
+              'GeneralCategory':vo['GeneralCategory'],
+              'MethodID':1,
+              'MethodName':'No method specified',
+              'SourceID':source['SourceID'],
+              'Organization':source['Organization'],
+              'Citation':source['Citation'],
+              'QualityControlLevelID':1,
+              'QualityControlLevelCode':'1'
+              }
+        with self.db.begin() as conn:
+            t = sa.Table('seriescatalog', self.metadata, autoload=True, autoload_with=conn)
+            conn.execute(t.insert(), sc)
+
+    def update_series(self, site_code, variable_code):
+        return 0
+
+            
     def update_series_catalog(self, site_code, variables):
+        #get the site object
+        utc_offset = -7
+        
+        #for each variable update the sc
+        for v in variables:
+            v_code = self.variable_lookup[v['variable']]
+            
+            #check if an entry already exists in seriesCatalog:
+            with self.db.begin() as conn:
+                t = sa.Table('seriescatalog', self.metadata, autoload=True, autoload_with=conn)
+                s = t.select(t.c['SiteCode'] == site_code and t.c['VariableCode'] == v['VariableCode'])
+                rs = conn.execute(s)
+                r = rs.fetchone()
+                if not r:
+                    #insert new item to seriesCatalog
+                    insert_series(site_code, v_code)
+                else:
+                    #update the seriesCatalog items valueCount and EndDate
+                    update_series(site_code, v_code)
+            rs = conn.execute(s)
+            r = rs.fetchone()
+            return r            
+            
+            
+#get the db's variable
+            v2 = 'vole'
         return 1
 
+
 if __name__ == '__main__':
-    sh = SNOTELHarvester('mysql+pymysql://WWO_Admin:PASSWORD@worldwater.byu.edu/snotel')
+    sh = SNOTELHarvester('mysql+pymysql://WWO_Admin:isaiah4118@worldwater.byu.edu/snotel')
         
