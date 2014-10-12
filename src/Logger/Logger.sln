@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+<<<<<<< HEAD
 # Visual Studio Express 2012 for Web
+=======
+# Visual Studio 2012
+>>>>>>> origin/master
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{895598D0-6DB8-4E44-AE1F-697AE2B1B74C}"
 EndProject
 Global
