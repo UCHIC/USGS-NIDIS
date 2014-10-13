@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Logger;
+//using Logger;
 using System.Diagnostics;
 
 namespace UpdateSnotel
@@ -39,7 +39,7 @@ namespace UpdateSnotel
                 }
                 catch (Exception e)
                 {
-                    DBLogging.WriteLog(Properties.Settings.Default.projectName, "Error", "clsDatabase" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name, e.Message + "()" + " \nstate: " + State + ", siteName: " + siteName);
+                    //DBLogging.WriteLog(Properties.Settings.Default.projectName, "Error", "clsDatabase" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name, e.Message + "()" + " \nstate: " + State + ", siteName: " + siteName);
                 }
             }
         }
@@ -113,7 +113,7 @@ namespace UpdateSnotel
             }
             catch (Exception e)
             {
-                DBLogging.WriteLog(Properties.Settings.Default.projectName, "Error", "clsDatabase" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", e.Message);
+                //DBLogging.WriteLog(Properties.Settings.Default.projectName, "Error", "clsDatabase" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", e.Message);
 
             }
         }

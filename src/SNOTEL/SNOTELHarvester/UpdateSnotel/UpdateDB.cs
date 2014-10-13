@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using Logger;
+//using Logger;
 
 
 namespace UpdateSnotel
@@ -25,21 +25,21 @@ namespace UpdateSnotel
         string projectName = Properties.Settings.Default.projectName;
         public  UpdateDB()
         {
-            DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "SNOTEL Harvester Has Begun Running");                    
+            //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "SNOTEL Harvester Has Begun Running");                    
             
             try
             {
                 fillMeta();
                 fillData();
-                DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "SNOTEL Harvester Has Completed Running");
+                //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "SNOTEL Harvester Has Completed Running");
                 System.Threading.Thread.Sleep(20);
-                SendEmail.SendMessage("SNOTELHarvester Completed", "SNOTEL Harvester has completed running, view the attached file for details", projectName, new TimeSpan(12, 0, 0));
+                //SendEmail.SendMessage("SNOTELHarvester Completed", "SNOTEL Harvester has completed running, view the attached file for details", projectName, new TimeSpan(12, 0, 0));
             }
             catch (Exception ex)
             {
-                DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "SNOTEL Harvester Has Completed Running");
+                //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "SNOTEL Harvester Has Completed Running");
                 System.Threading.Thread.Sleep(20);
-                SendEmail.SendMessage("SNOTELHarvester error", string.Format("SNOTEL Harvester has encountered an error and is shutting down. The error is {0} and occured in:  \n{1}",ex.Message, ex.StackTrace), projectName, new TimeSpan(12, 0, 0));
+                //SendEmail.SendMessage("SNOTELHarvester error", string.Format("SNOTEL Harvester has encountered an error and is shutting down. The error is {0} and occured in:  \n{1}",ex.Message, ex.StackTrace), projectName, new TimeSpan(12, 0, 0));
         
             }
             
@@ -49,7 +49,7 @@ namespace UpdateSnotel
         {
             //getStates
             clsSnoTelStateList l = new clsSnoTelStateList("http://www.wcc.nrcs.usda.gov/snow/sntllist.html");
-            DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Updating Sites Table using Method 1: {0} states found.", l.stateList.Count));
+            //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Updating Sites Table using Method 1: {0} states found.", l.stateList.Count));
                                
             //getSites
             for (int i = 0; i < l.stateList.Count; i++)
@@ -69,7 +69,7 @@ namespace UpdateSnotel
                         double lng = format.ConvertLatLong(sr.Longitude);
                         if (db.isNewSite(siteCode))
                         {
-                            DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "inserting site: " + sr.SiteName);
+                            //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "inserting site: " + sr.SiteName);
                 
                             db.insertSite(siteCode, sr.SiteName, lat, lng, 0, format.feetToMeters(Convert.ToDouble(sr.Elevation.Split('\'')[0])), null, null, null, null, null, l.stateList[i].state, sr.County, null, format.getTimeZone(lat, lng), sr.Status);
                             
@@ -83,7 +83,7 @@ namespace UpdateSnotel
                 }    
             }
             clsSnoTelSiteTable st = new clsSnoTelSiteTable("http://www.wcc.nrcs.usda.gov/nwcc/sitelist.jsp");
-            DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name+"()", "Updating Sites Table using Method 2");
+            //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name+"()", "Updating Sites Table using Method 2");
             foreach (clsSnoTelSiteTable.SnoTelSiteRecord ssr in st.Records)
             {
                 double lat = format.ConvertLatLong(ssr.Latitude);
@@ -92,7 +92,7 @@ namespace UpdateSnotel
                 {
                     if (db.isNewSite(ssr.SiteCode))
                     {
-                        DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "inserting site: " + ssr.SiteName);
+                        //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "inserting site: " + ssr.SiteName);
                         db.insertSite(ssr.SiteCode, ssr.SiteName, lat, lng, 0, format.feetToMeters(Convert.ToDouble(ssr.Elevation.Split('\'')[0])), null, null, null, null, null, format.getFullState(ssr.State), ssr.County, null, format.getTimeZone(lat, lng), ssr.Status);                        
                     }
                     else
@@ -101,7 +101,7 @@ namespace UpdateSnotel
                     }
                 }
             }
-            DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "Updating Sites Table Completed");                
+            //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", "Updating Sites Table Completed");                
         }
         
 
@@ -109,7 +109,7 @@ namespace UpdateSnotel
         {
             numOfSites = db.getNumOfSites();
 
-            DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Updating Series Catalog Table: {0} sites", numOfSites));
+            //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Updating Series Catalog Table: {0} sites", numOfSites));
              
             //loop through all of the sites and pull down the information from the website
             for (siteID = beginSite; siteID <= numOfSites && keepgoing; siteID++)
@@ -156,7 +156,7 @@ namespace UpdateSnotel
 
                             if (db.isNewSeries(siteID, variableID))
                             {
-                                DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Adding New Series. Site:{0}/{1} SiteName: {2}  Variable ID:{3}, {4} {5}/{6}", siteID + 1, numOfSites, siteName,state ,variableID, i, numOfVars));
+                                //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Adding New Series. Site:{0}/{1} SiteName: {2}  Variable ID:{3}, {4} {5}/{6}", siteID + 1, numOfSites, siteName,state ,variableID, i, numOfVars));
 
                                 Variables v = db.getVariableInfo(variableID);
                                 Units vu = db.getUnits(Convert.ToInt32(v.UnitsReference.EntityKey.EntityKeyValues[0].Value));
@@ -176,7 +176,7 @@ namespace UpdateSnotel
                             }
                             else
                             {
-                                DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Updating Series. Site:{0}/{1} SiteName: {2}  Variable ID:{3}, {4}  {5}/{6}", siteID, numOfSites, siteName,state, variableID, i, numOfVars));
+                                //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Updating Series. Site:{0}/{1} SiteName: {2}  Variable ID:{3}, {4}  {5}/{6}", siteID, numOfSites, siteName,state, variableID, i, numOfVars));
                                 //DBLogging.WriteLog(projectName, "Log", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("Updating Series. Site:{0}/{1} SiteName: {2}  Variable ID:{3}, {4}/{5}", siteID, numOfSites, siteName,, variableID, i, numOfVars));
                                 db.updateSeries(siteID, variableID, beginDateTime, endDateTime, beginDateTimeUTC, endDateTimeUTC, valueCount);
 
@@ -186,7 +186,7 @@ namespace UpdateSnotel
                 }
                 else
                 {
-                    DBLogging.WriteLog(projectName, "Error", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("No Data Found. Site:{0}/{1} SiteName: {2}, {3}  ", siteID , numOfSites, siteName, state ));
+                    //DBLogging.WriteLog(projectName, "Error", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", string.Format("No Data Found. Site:{0}/{1} SiteName: {2}, {3}  ", siteID , numOfSites, siteName, state ));
                     
                 }
                 numOfCols = 0;
@@ -369,7 +369,7 @@ namespace UpdateSnotel
                     }
                     if (count ==5)
                     {
-                        DBLogging.WriteLog(projectName, "Error", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", ex.Message + ". "+ request[0].RequestUri.AbsoluteUri+ " StackTrace:" + ex.StackTrace);
+                        //DBLogging.WriteLog(projectName, "Error", "UpdateDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", ex.Message + ". "+ request[0].RequestUri.AbsoluteUri+ " StackTrace:" + ex.StackTrace);
                         return false;
                         //throw new Exception("SNOTEL Website is Offline");                       
                     }
