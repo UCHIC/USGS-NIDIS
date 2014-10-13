@@ -11,7 +11,11 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 
 // Original file name:
+<<<<<<< HEAD
+// Generation date: 10/11/2014 4:51:46 PM
+=======
 // Generation date: 10/11/2014 9:09:35 PM
+>>>>>>> origin/master
 namespace Logger
 {
     
