@@ -1675,8 +1675,9 @@ if (!function_exists('db_GetResultWML2')) {
 
 	    //first get the metadata
 		// implement sql query (because of complex query date range that too difficult if still using active record) with escape string to avoid from SQL injection
-		$querymeta = "SELECT SiteID, VariableID, MethodID, SourceID, QualityControlLevelID,BeginDateTime,EndDateTime, SampleMedium FROM " . get_table_name('SeriesCatalog');
-    	$querymeta .= " WHERE SiteCode = ? AND VariableCode = ? ";
+		$querymeta = "SELECT sc.SiteID, State, VariableID, MethodID, SourceID, QualityControlLevelID,BeginDateTime,EndDateTime, SampleMedium FROM " . get_table_name('SeriesCatalog') . " sc";
+    	$querymeta .= " INNER JOIN " . get_table_name('Sites') . " s ON sc.SiteID = s.SiteID";
+		$querymeta .= " WHERE SiteCode = ? AND VariableCode = ? ";
 
 		if ((isset($beginTime) && $beginTime != "") && (isset($endTime) && $endTime != "")) {
 			$querymeta .= " AND ( (BeginDateTime <= ? AND EndDateTime >= ? ) OR (BeginDateTime >= ? AND BeginDateTime <= ? ) OR (EndDateTime >= ? AND EndDateTime <= ?) )";
@@ -1749,7 +1750,7 @@ if (!function_exists('db_GetResultWML2')) {
 			$siteInfo = db_GetSiteByCodeWML2($siteCode, 1);
 			$retVal .= '<om:featureOfInterest xlink:href="#site_'.$siteCode.'" xlink:title="'.$siteInfo['SiteName'].', '.$siteInfo['State'].'" />';
 	
-			$retVal .=  db_GetValues_OneSeriesWML2($row["SiteID"], $row["VariableID"], $row["MethodID"], $row["SourceID"], $row["QualityControlLevelID"], $beginTime, $endTime);
+			$retVal .=  db_GetValues_OneSeriesWML2($row["SiteID"], $row["State"], $siteCode, $row["VariableID"], $row["MethodID"], $row["SourceID"], $row["QualityControlLevelID"], $beginTime, $endTime);
 			
 			 $retVal .= '</om:OM_Observation>';
 		  
@@ -1984,18 +1985,8 @@ if (!function_exists('db_GetValues_OneSeries')) {
 
 if (!function_exists('db_GetValues_OneSeriesWML2')) {
 
-	function db_GetValues_OneSeriesWML2($siteID, $variableID, $methodID, $sourceID, $qcID, $beginTime, $endTime) {
+	function db_GetValues_OneSeriesWML2($siteID, $siteCode, $state, $variableID, $methodID, $sourceID, $qcID, $beginTime, $endTime) {
 	    $ci = &get_instance();
-
-	    $data_values_table = get_table_name('DataValues');
-	    $samples_table = get_table_name('Samples');
-		$ci->db->select("d.LocalDateTime, d.UTCOffset, d.DateTimeUTC, d.DataValue, s.LabSampleCode");
-		$ci->db->join($samples_table." s","d.SampleID = s.SampleID","LEFT");
-		$ci->db->where("d.SiteID",$siteID);
-		$ci->db->where("d.VariableID",$variableID);
-		$ci->db->where("d.MethodID",$methodID);
-		$ci->db->where("d.SourceID",$sourceID);
-		$ci->db->where("d.QualityControlLevelID",$qcID);
 	
 		if ((isset($beginTime) && $beginTime != "") && (isset($endTime) && $endTime != "")) {
 			$ci->db->where("d.LocalDateTime >=",$beginTime);
@@ -2070,6 +2061,31 @@ if (!function_exists('db_GetValues_OneSeriesWML2')) {
 		addToLocalDictionaryWML2("censorCode",$dictEntry);
 		
 		//Printing Values
+		$txt_file = file_get_contents($url);
+        $rows = explode("\n", $txt_file);
+        array_shift($rows);
+        $nr = 0;
+
+        $retVal = "<values>";
+		$nr = 0;
+        foreach($rows as $row => $data) {
+		    $nr++;
+			if ($nr > 7) {
+		        $row_data = explode(',', $data);
+				if (count($row_data)>1) {
+				    $dat = $row_data[0];
+					$dateOP = date_create_from_format('Y-m-d', $dat)->setTimezone(new DateTimeZone('UTC'))->format('c');
+					$retVal .= '<wml2:point>
+							<wml2:MeasurementTVP>
+								<wml2:time>'.$dateOP.'</wml2:time>
+								<wml2:value>'.$row['DataValue'].'</wml2:value>
+						</wml2:MeasurementTVP>
+				    </wml2:point>
+				    ';
+				}
+			}
+		}
+		
 		
 		foreach ($result->result_array() as $row) {
 			
