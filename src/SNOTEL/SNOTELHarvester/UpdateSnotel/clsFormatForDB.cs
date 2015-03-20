@@ -7,7 +7,7 @@ using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using Logger;
+//using Logger;
 
 namespace UpdateSnotel
 {
@@ -46,7 +46,7 @@ namespace UpdateSnotel
             }
             catch(Exception ex)
             {
-                DBLogging.WriteLog(Properties.Settings.Default.projectName, "Error", "clsFormatForDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", ex.Message);
+                //DBLogging.WriteLog(Properties.Settings.Default.projectName, "Error", "clsFormatForDB" + "." + (new StackTrace(true)).GetFrame(0).GetMethod().Name + "()", ex.Message);
                 return 0;
             }
         }
